@@ -4,6 +4,8 @@ Project Proposal
 The tentative project title:
 ----------------------------
 
+Identification of trends and disparities in HIV/AIDS for NYC
+
 Group members (names and UNIs)
 ------------------------------
 

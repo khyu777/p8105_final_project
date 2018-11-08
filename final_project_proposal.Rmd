@@ -3,7 +3,8 @@ title: "Project Proposal"
 output: github_document
 ---
 
-## The tentative project title: 
+## The tentative project title:
+Identification of trends and disparities in HIV/AIDS for NYC
 
 ## Group members (names and UNIs)
 * Bryce Wong (baw2160)
