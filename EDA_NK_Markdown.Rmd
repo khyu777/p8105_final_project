@@ -2,7 +2,7 @@
 title: "EDA_Markdown_NK"
 author: "Noah Kreski"
 date: "November 19, 2018"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -11,7 +11,7 @@ library(tidyverse)
 library(ggplot2)
 ```
 
-```{r eda}
+```{r eda linkage}
 HIV_data = read_csv("./data/DOHMH_HIV_AIDS_Annual_report.csv")
 Linkage_data_male = HIV_data%>%
                janitor::clean_names()%>%
@@ -20,5 +20,24 @@ Linkage_data_male = HIV_data%>%
                filter(gender == "Male")
 Linkage_data_male%>%
                ggplot(aes(x = year, y = percent_linked_to_care_within_3_months, group = age, color = age))+geom_point() + geom_line()
+Linkage_data_female = HIV_data%>%
+               janitor::clean_names()%>%
+               filter(borough %in% c("All"))%>%
+               filter(!(age %in% c("All")))%>%
+               filter(gender == "Female")
+Linkage_data_female%>%
+               ggplot(aes(x = year, y = percent_linked_to_care_within_3_months, group = age, color = age))+geom_point() + geom_line()         
+```
+
+```{r eda aids diagnosis rate}
+HIV_data = read_csv("./data/DOHMH_HIV_AIDS_Annual_report.csv")
+diagnosis_data = HIV_data%>%
+               janitor::clean_names()%>%
+               filter(borough %in% c("All"))%>%
+               filter((age %in% c("All")))%>%
+               filter(!(gender %in% c("Transgender")))%>%
+               filter(race %in% c("All"))
+diagnosis_data%>%
+               ggplot(aes(x = year, y = aids_diagnosis_rate, group = gender, color = gender))+geom_point() + geom_line()
               
 ```
