@@ -1,0 +1,20 @@
+---
+title: "Exploratory Data Analysis of Distributions"
+author: "Briana Lettsome"
+date: "November 19, 2018"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(ggridges)
+```
+
+```{r}
+# Reading in of the DOHMH_HIV_AIDS_Annual_Report csv file.
+
+hiv_data = read_csv(file = "./data/DOHMH_HIV_AIDS_Annual_Report.csv")
+```
+
