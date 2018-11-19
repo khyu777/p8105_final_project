@@ -1,4 +1,4 @@
-Exploratory Data Analysis of Distributions
+BJL2150\_Exploratory\_Data\_Analysis
 ================
 Briana Lettsome
 November 19, 2018
@@ -46,7 +46,15 @@ hiv %>%
   facet_grid(~gender)
 ```
 
-![](Exploratory_Data_Analysis_of_Distributions_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](BJL2150_Exploratory_Data_Analysis_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
 Other/Unknown category includes people of Native American, multiracial, and unknown races.
-==========================================================================================
+
+``` r
+prevalence = hiv_data %>%
+  select(race, age, borough, plwdhi_prevalence, year)
+```
+
+PLWDHI prevalence
+
+By age group?
