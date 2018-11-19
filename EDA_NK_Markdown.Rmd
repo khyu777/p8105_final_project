@@ -1,0 +1,24 @@
+---
+title: "EDA_Markdown_NK"
+author: "Noah Kreski"
+date: "November 19, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r eda}
+HIV_data = read_csv("./data/DOHMH_HIV_AIDS_Annual_report.csv")
+Linkage_data_male = HIV_data%>%
+               janitor::clean_names()%>%
+               filter(borough %in% c("All"))%>%
+               filter(!(age %in% c("All")))%>%
+               filter(gender == "Male")
+Linkage_data_male%>%
+               ggplot(aes(x = year, y = percent_linked_to_care_within_3_months, group = age, color = age))+geom_point() + geom_line()
+              
+```
