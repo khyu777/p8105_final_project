@@ -34,4 +34,4 @@ hiv %>%
   facet_grid(~gender)
 ```
 
-# Other/Unknown category includes people of Native American, multiracial, and unknown races.
+Other/Unknown category includes people of Native American, multiracial, and unknown races.
