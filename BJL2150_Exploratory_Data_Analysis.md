@@ -49,3 +49,10 @@ hiv %>%
 ![](BJL2150_Exploratory_Data_Analysis_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
 Other/Unknown category includes people of Native American, multiracial, and unknown races.
+
+``` r
+prevalence = hiv_data %>%
+  select(race, age, borough, plwdhi_prevalence, year)
+```
+
+PLWDHI prevalence By age group?
