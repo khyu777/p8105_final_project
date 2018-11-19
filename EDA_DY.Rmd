@@ -1,0 +1,51 @@
+---
+title: "Untitled"
+author: "Keunhyung Yu"
+date: "November 14, 2018"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r split_data, }
+hiv_data = 
+  read_csv("data/DOHMH_HIV_AIDS_Annual_Report.csv") %>% 
+  janitor::clean_names()
+
+hiv_boro =
+  hiv_data %>%
+  filter(borough != "All", uhf == "All", gender == "All" & age == "All" & race == "All")
+
+hiv_uhf =
+  hiv_data %>%
+  filter(borough != "All", uhf != "All", gender == "All", age == "All", race == "All")
+
+hiv_gend =
+  hiv_data %>%
+  filter(borough == "All", uhf == "All", gender != "All", age == "All", race == "All") %>% 
+  mutate(hiv_diagnosis_rate = recode(hiv_diagnosis_rate, '99999.0' = NaN))
+
+hiv_age =
+  hiv_data %>%
+  filter(age != "All", borough == "All", uhf == "All")
+
+hiv_race =
+  hiv_data %>%
+  filter(race != "All", borough == "All", uhf == "All")
+
+```
+
+```{r}
+hiv_gend %>% 
+  ggplot(aes(year, hiv_diagnosis_rate)) +
+  geom_line(aes(group = gender, color = gender))
+
+hiv_age %>% 
+  ggplot(aes(year, hiv_diagnosis_rate)) +
+  geom_line(aes(group = age, color = age)) + 
+  facet_wrap(~gender)
+```
+
