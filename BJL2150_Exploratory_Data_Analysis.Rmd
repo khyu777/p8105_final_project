@@ -39,6 +39,7 @@ Other/Unknown category includes people of Native American, multiracial, and unkn
 ```{r}
 prevalence = hiv_data %>%
   select(race, age, borough, plwdhi_prevalence, year)
+
 ```
 
 PLWDHI prevalence
