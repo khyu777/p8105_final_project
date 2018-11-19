@@ -93,19 +93,19 @@ ggplot(hiv_year_data, aes(x = year, y = percent_viral_suppression)) +
   )
 ```
 
-Split by age:
+Split by age and gender:
 
 ```{r}
 split_by_age = hiv_data %>% 
   filter(
+    age != "All",
     borough == "All",
-    uhf == "All",
-    gender == "All",
-    race == "All"
-  )
-  
-ggplot(hiv_data, aes(x = year, y = percent_viral_suppression, group = age)) +   
+    uhf == "All"
+    ) 
+
+ggplot(split_by_age, aes(x = year, y = percent_viral_suppression, group = age)) +   
   geom_line(aes(color = age)) +
+  facet_grid(~gender) +
   labs(
     title = "Percent viral suppression by age over the years",
     x = "Year",
@@ -113,4 +113,44 @@ ggplot(hiv_data, aes(x = year, y = percent_viral_suppression, group = age)) +
   )
 ```
 
+Percent viral suppression by gender over the years:
 
+```{r}
+split_by_gender = hiv_data %>% 
+  filter(
+    age == "All",
+    borough == "All",
+    uhf == "All",
+    race == "All",
+    gender != "All"
+    ) 
+
+ggplot(split_by_gender, aes(x = year, y = percent_viral_suppression, group = gender)) +   
+  geom_line(aes(color = gender)) +
+  labs(
+    title = "Percent viral suppression by gender over the years",
+    x = "Year",
+    y = "Percent Viral Suppression"
+  )
+```
+
+Percent viral suppression by race over the years:
+
+```{r}
+split_by_race = hiv_data %>% 
+  filter(
+    age == "All",
+    borough == "All",
+    uhf == "All",
+    race != "All"
+    ) 
+
+ggplot(split_by_race, aes(x = year, y = percent_viral_suppression, group = race)) +   
+  geom_line(aes(color = race)) +
+  facet_grid(~gender) +
+  labs(
+    title = "Percent viral suppression by race over the years",
+    x = "Year",
+    y = "Percent Viral Suppression"
+  )
+```
