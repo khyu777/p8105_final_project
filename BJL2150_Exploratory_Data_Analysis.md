@@ -55,4 +55,6 @@ prevalence = hiv_data %>%
   select(race, age, borough, plwdhi_prevalence, year)
 ```
 
-PLWDHI prevalence By age group?
+PLWDHI prevalence
+
+By age group?
