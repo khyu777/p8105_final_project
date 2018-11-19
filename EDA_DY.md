@@ -55,6 +55,7 @@ hiv_race =
 ```
 
 ``` r
+#HIV diag rate over time by gender
 hiv_gend %>% 
   ggplot(aes(year, hiv_diagnosis_rate)) +
   geom_line(aes(group = gender, color = gender))
@@ -65,6 +66,7 @@ hiv_gend %>%
 ![](EDA_DY_files/figure-markdown_github/unnamed-chunk-1-1.png)
 
 ``` r
+#HIV diag rate over time by age groups
 hiv_age %>% 
   ggplot(aes(year, hiv_diagnosis_rate)) +
   geom_line(aes(group = age, color = age)) + 
@@ -72,3 +74,13 @@ hiv_age %>%
 ```
 
 ![](EDA_DY_files/figure-markdown_github/unnamed-chunk-1-2.png)
+
+``` r
+#HIV diag rate distribution across age groups
+hiv_age %>% 
+  ggplot(aes(age, hiv_diagnosis_rate)) +
+  geom_boxplot() +
+  facet_wrap(~gender)
+```
+
+![](EDA_DY_files/figure-markdown_github/unnamed-chunk-1-3.png)
