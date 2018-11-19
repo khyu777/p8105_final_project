@@ -1,0 +1,52 @@
+---
+title: "EDA - death rates"
+author: "Bryce Wong"
+date: "November 19, 2018"
+output: github_document
+---
+
+### Exploratory Data Analysis of death rate outcome variables for HIV/AIDS in NYC
+
+Loading libraries:
+
+```{r}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw() + theme(legend.position = "bottom"))
+```
+
+Loading the data:
+
+```{r}
+hiv_data = read_csv("./data/DOHMH_HIV_AIDS_Annual_Report.csv")
+```
+
+Cleaning the data to just look at times, controlling for gender, age, race, borough, and UHF:
+
+```{r}
+hiv_data = hiv_data %>% 
+  janitor::clean_names() %>% 
+  filter(
+    borough == "All",
+    uhf == "All",
+    gender == "All",
+    age == "All",
+    race == "All"
+  )
+```
+
+Looking at death rates across time:
+
+```{r}
+death_rates = hiv_data %>% 
+  ggplot(aes(x = year, y = death_rate)) +   
+  geom_line() +
+  labs(
+    title = "Death rates in HIV over the years",
+    x = "Year",
+    y = "Death Rate"
+  )
+```
+
+
