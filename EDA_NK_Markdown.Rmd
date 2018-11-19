@@ -2,7 +2,7 @@
 title: "EDA_Markdown_NK"
 author: "Noah Kreski"
 date: "November 19, 2018"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
