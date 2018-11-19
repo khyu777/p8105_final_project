@@ -1,0 +1,83 @@
+---
+title: "EDA - death rates"
+author: "Bryce Wong"
+date: "November 19, 2018"
+output: github_document
+---
+
+### Exploratory Data Analysis of death rate outcome variables for HIV/AIDS in NYC
+
+Loading libraries:
+
+```{r}
+library(tidyverse)
+library(patchwork)
+
+theme_set(theme_bw() + theme(legend.position = "bottom"))
+```
+
+Loading the data:
+
+```{r}
+hiv_data = read_csv("./data/DOHMH_HIV_AIDS_Annual_Report.csv")
+```
+
+Cleaning the data to just look at times, controlling for gender, age, race, borough, and UHF:
+
+```{r}
+hiv_year_data = hiv_data %>% 
+  janitor::clean_names() %>% 
+  filter(
+    borough == "All",
+    uhf == "All",
+    gender == "All",
+    age == "All",
+    race == "All"
+  )
+```
+
+Looking at death rates across time:
+
+```{r}
+ggplot(hiv_year_data, aes(x = year, y = death_rate)) +   
+  geom_line() +
+  labs(
+    title = "Death rates over the years",
+    x = "Year",
+    y = "Death Rate"
+  )
+```
+
+Mapping all outcome variables on the same graph.
+
+First gathering several outcome variables of interest into one outcome variable:
+
+```{r}
+all_death_rates = hiv_data %>% 
+  gather(key = death_rate_type, value = death_rate_nums, death_rate:non_hiv_related_death_rate) %>% 
+  filter(death_rate_nums != 99999)
+
+ggplot(all_death_rates, aes(x = year, y = death_rate_nums, group = death_rate_type)) +   
+  geom_line(aes(color = death_rate_type)) +
+  labs(
+    title = "Death rates types over the years",
+    x = "Year",
+    y = "Rate"
+  )
+```
+
+Making a stacked bar graph instead of a spaghetti plot
+
+```{r}
+stacked_death_plot = all_death_rates %>% 
+  filter(death_rate_type != "death_rate")
+
+ggplot(stacked_death_plot, aes(x = year, y = death_rate_nums, group = death_rate_type)) +   
+  geom_col(aes(fill = death_rate_type)) +
+  labs(
+    title = "Death rates types over the years",
+    x = "Year",
+    y = "Rate"
+  )
+```
+
