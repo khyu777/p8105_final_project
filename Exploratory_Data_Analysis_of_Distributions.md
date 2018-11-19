@@ -48,4 +48,5 @@ hiv %>%
 
 ![](Exploratory_Data_Analysis_of_Distributions_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
-### Other/Unknown category includes people of Native American, multiracial, and unknown races.
+Other/Unknown category includes people of Native American, multiracial, and unknown races.
+==========================================================================================
