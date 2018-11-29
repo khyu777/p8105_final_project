@@ -37,15 +37,26 @@ hiv %>%
 Other/Unknown category includes people of Native American, multiracial, and unknown races.
 
 ```{r}
-  prevalence = hiv_data %>%
-    select(age,plwdhi_prevalence, year, gender) %>%
+  race_prevalence = hiv_data %>%
+    select(age,plwdhi_prevalence, year) %>%
     filter(!age =="All") %>%
-  group_by(age, year) %>%
+  group_by(year, age) %>%
   count(plwdhi_prevalence)
-    
+ 
+ borough_prevalence = hiv_data %>%
+    select(age,plwdhi_prevalence, year, borough, uhf, gender, race) %>%
+    filter(uhf =="All") %>%
+   filter(race == "All") %>%
+   filter(gender == "All") %>%
+   filter(!borough == "All") %>%
+  group_by(year, borough)
+``` 
+ 
+ ggplot(race_prevalence, aes(x = year, y= plwdhi_prevalence, color)) + 
+  geom_histogram(position = "dodge", binwidth = 2)
 
-prevalence %>%
-  ggplot(aes(x = year, y = plwdhi_prevalence, color = age)) + 
+borough_prevalence %>%
+  ggplot(aes(x = year, y = plwdhi_prevalence, color = borough)) + 
   geom_line()
 
 ```
