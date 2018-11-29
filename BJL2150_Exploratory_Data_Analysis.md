@@ -51,9 +51,19 @@ hiv %>%
 Other/Unknown category includes people of Native American, multiracial, and unknown races.
 
 ``` r
-prevalence = hiv_data %>%
-  select(race, age, borough, plwdhi_prevalence, year)
+  prevalence = hiv_data %>%
+    select(age,plwdhi_prevalence, year, gender) %>%
+    filter(!age =="All") %>%
+  group_by(age, year) %>%
+  count(plwdhi_prevalence)
+    
+
+prevalence %>%
+  ggplot(aes(x = year, y = plwdhi_prevalence, color = age)) + 
+  geom_line()
 ```
+
+![](BJL2150_Exploratory_Data_Analysis_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 PLWDHI prevalence
 
