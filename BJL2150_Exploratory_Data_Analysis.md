@@ -53,17 +53,13 @@ Other/Unknown category includes people of Native American, multiracial, and unkn
 PLWDHI prevalence
 =================
 
-``` r
-  race_prevalence = hiv_data %>%
-    select(age,plwdhi_prevalence, year, uhf, gender, borough, race) %>%
-    filter(uhf =="All") %>%
-  filter(!race == "All") %>%
-  filter(borough == "All")
-```
+race\_prevalence = hiv\_data %&gt;% select(age,plwdhi\_prevalence, year, uhf, gender, borough, race) %&gt;% filter(uhf =="All") %&gt;% filter(!race == "All") %&gt;% filter(borough == "All") %&gt;% select(-age, -uhf, -borough)
 
-group\_by(year, age) %&gt;% count(plwdhi\_prevalence)
+two\_race\_prevalence = hiv\_data %&gt;% select(age,plwdhi\_prevalence, year, uhf, gender, borough, race) %&gt;% filter(uhf =="All") %&gt;% filter(!race == "All") %&gt;% filter(borough == "All") %&gt;% select(-age, -uhf, -borough)
 
-ggplot(weather\_df, aes(x = tmax, fill = name)) + geom\_histogram(position = "dodge", binwidth = 2)
+ggplot(race\_prevalence, aes(x = year, fill = race)) + geom\_histogram(position = "dodge", binwidth = 2) + facet\_grid(~ gender)
+
+race\_prevalence %&gt;% ggplot(aes(x = year, y = plwdhi\_prevalence, color = race)) + geom\_line() + facet\_grid(~gender)
 
 \`\`\`
 
@@ -86,4 +82,4 @@ borough_prevalence %>%
   geom_line() 
 ```
 
-![](BJL2150_Exploratory_Data_Analysis_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](BJL2150_Exploratory_Data_Analysis_files/figure-markdown_github/unnamed-chunk-3-1.png)
