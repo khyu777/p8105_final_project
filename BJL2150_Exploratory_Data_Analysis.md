@@ -50,13 +50,23 @@ hiv %>%
 
 Other/Unknown category includes people of Native American, multiracial, and unknown races.
 
+PLWDHI prevalence
+=================
+
 ``` r
   race_prevalence = hiv_data %>%
     select(age,plwdhi_prevalence, year) %>%
     filter(!age =="All") %>%
   group_by(year, age) %>%
   count(plwdhi_prevalence)
- 
+```
+
+Prevalence by borough
+---------------------
+
+Making of spaghetti plot showing persons diagnosed HIV infection by borough over the years.
+
+``` r
  borough_prevalence = hiv_data %>%
     select(age,plwdhi_prevalence, year, borough, uhf, gender, race) %>%
     filter(uhf =="All") %>%
@@ -64,14 +74,10 @@ Other/Unknown category includes people of Native American, multiracial, and unkn
    filter(gender == "All") %>%
    filter(!borough == "All") %>%
   group_by(year, borough)
+
+borough_prevalence %>%
+  ggplot(aes(x = year, y = plwdhi_prevalence, color = borough)) + 
+  geom_line() 
 ```
 
-ggplot(race\_prevalence, aes(x = year, y= plwdhi\_prevalence, color)) + geom\_histogram(position = "dodge", binwidth = 2)
-
-borough\_prevalence %&gt;% ggplot(aes(x = year, y = plwdhi\_prevalence, color = borough)) + geom\_line()
-
-\`\`\`
-
-PLWDHI prevalence
-
-By age group?
+![](BJL2150_Exploratory_Data_Analysis_files/figure-markdown_github/unnamed-chunk-4-1.png)
