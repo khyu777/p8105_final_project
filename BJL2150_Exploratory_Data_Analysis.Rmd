@@ -40,11 +40,16 @@ Other/Unknown category includes people of Native American, multiracial, and unkn
 # PLWDHI prevalence
 ```{r}
   race_prevalence = hiv_data %>%
-    select(age,plwdhi_prevalence, year) %>%
-    filter(!age =="All") %>%
+    select(age,plwdhi_prevalence, year, uhf, gender, borough, race) %>%
+    filter(uhf =="All") %>%
+  filter(!race == "All") %>%
+  filter(borough == "All")
+```
   group_by(year, age) %>%
   count(plwdhi_prevalence)
 
+  ggplot(weather_df, aes(x = tmax, fill = name)) + 
+  geom_histogram(position = "dodge", binwidth = 2)
 
 ```
 

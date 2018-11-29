@@ -55,11 +55,17 @@ PLWDHI prevalence
 
 ``` r
   race_prevalence = hiv_data %>%
-    select(age,plwdhi_prevalence, year) %>%
-    filter(!age =="All") %>%
-  group_by(year, age) %>%
-  count(plwdhi_prevalence)
+    select(age,plwdhi_prevalence, year, uhf, gender, borough, race) %>%
+    filter(uhf =="All") %>%
+  filter(!race == "All") %>%
+  filter(borough == "All")
 ```
+
+group\_by(year, age) %&gt;% count(plwdhi\_prevalence)
+
+ggplot(weather\_df, aes(x = tmax, fill = name)) + geom\_histogram(position = "dodge", binwidth = 2)
+
+\`\`\`
 
 Prevalence by borough
 ---------------------
