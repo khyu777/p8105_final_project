@@ -1,0 +1,17 @@
+---
+title: "as5457_final"
+author: "Sunny Siddique"
+date: "November 29, 2018"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r}
+HIV_data = read_csv("./data/DOHMH_HIV_AIDS_Annual_report.csv")
+```
+
