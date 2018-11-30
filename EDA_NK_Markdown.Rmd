@@ -51,6 +51,7 @@ HIV_diagnosis_data = HIV_data%>%
                filter(gender == "All")%>%
                filter(age == "All")
 HIV_diagnosis_data%>%
-            ggplot(aes(x = year, y = hiv_diagnosis_rate, group = borough, color = borough))+geom_point() + geom_line()
+            ggplot( aes(fill=reorder(borough, -hiv_diagnosis_rate), y=hiv_diagnosis_rate, x=year)) +
+    geom_bar(position="dodge", stat="identity") + labs(title = "HIV Diagnosis Rate by Borough over Time", y = "HIV Diagnosis Rate", x = "Year", fill = "Borough") 
               
 ```
