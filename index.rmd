@@ -7,3 +7,24 @@ Sunny Siddique (as5457)
 David Yu (ky2288)
 Noah Kreski (Ntk2109)
 Briana Lettsome (Bjl2150)
+
+```{r include=FALSE}
+library(tidyverse)
+HIV_data = 
+  read_csv("data/DOHMH_HIV_AIDS_Annual_Report.csv") %>% 
+  janitor::clean_names()
+
+HIV_diagnosis_data = HIV_data%>%
+               janitor::clean_names()%>%
+               filter(uhf %in% c("All"))%>%
+               filter(borough != "All")%>%
+               filter(gender == "All")%>%
+               filter(age == "All")
+```
+
+```{r echo=FALSE}
+HIV_diagnosis_data%>%
+            ggplot( aes(fill=reorder(borough, -hiv_diagnosis_rate), y=hiv_diagnosis_rate, x=year)) +
+    geom_bar(position="dodge", stat="identity") + labs(title = "HIV Diagnosis Rate by Borough over Time", y = "HIV Diagnosis Rate", x = "Year", fill = "Borough") 
+```
+
