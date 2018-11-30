@@ -31,14 +31,20 @@ hiv = hiv_data %>%
 hiv %>%
   ggplot(aes(x = year, y = hiv_diagnosis_rate, color = race, group = race)) +
   geom_line() +
-  facet_grid(~gender)
+  facet_grid(~gender) +
+   labs(
+    title = "HIV Diagnosis Rates by Race",
+    x = "Year",
+    y = "HIV Diagnosis Rates",
+    caption = "Data from the NYCDOHMH"
+  )
 ```
 
 Other/Unknown category includes people of Native American, multiracial, and unknown races.
 
 
 # PLWDHI prevalence
-
+```{r}
   race_prevalence = hiv_data %>%
     select(age,plwdhi_prevalence, year, uhf, gender, borough, race) %>%
     filter(uhf =="All") %>%
@@ -83,5 +89,20 @@ borough_prevalence %>%
   geom_line() 
 ```
 
+EDAs to keep:
+
+Bryce - 
+Bar graph - Death rate type over the years
+Death rate line graph - Will talk about in paper but not include
+Percent viral suppression by race and faceted by gender
+
+Briana-
+HIV diagnosis rates by race and faceted by gender (can link this with Bryce’s percent viral suppression by race and gender)
+
+Noah -
+HIV diagnosis by borough
+
+David -
+HIV diagnosis rates by age and faceted by gender
 
 

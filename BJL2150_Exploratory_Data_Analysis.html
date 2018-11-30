@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Briana Lettsome" />
+
+<meta name="date" content="2018-11-19" />
+
+<title>BJL2150_Exploratory_Data_Analysis</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="mailto:as5457@cumc.columbia.edu">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://khyu777.github.io/p8105_final_project/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">BJL2150_Exploratory_Data_Analysis</h1>
+<h4 class="author"><em>Briana Lettsome</em></h4>
+<h4 class="date"><em>November 19, 2018</em></h4>
+
+</div>
+
+
+<pre class="r"><code># Reading in of the DOHMH_HIV_AIDS_Annual_Report csv file.
+
+hiv_data = read_csv(file = &quot;./data/DOHMH_HIV_AIDS_Annual_Report.csv&quot;) %&gt;%
+  janitor::clean_names()</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Year = col_integer(),
+##   Borough = col_character(),
+##   UHF = col_character(),
+##   Gender = col_character(),
+##   Age = col_character(),
+##   Race = col_character(),
+##   `HIV diagnoses` = col_integer(),
+##   `HIV diagnosis rate` = col_double(),
+##   `Concurrent diagnoses` = col_integer(),
+##   `% linked to care within 3 months` = col_integer(),
+##   `AIDS diagnoses` = col_integer(),
+##   `AIDS diagnosis rate` = col_double(),
+##   `PLWDHI prevalence` = col_double(),
+##   `% viral suppression` = col_integer(),
+##   Deaths = col_integer(),
+##   `Death rate` = col_double(),
+##   `HIV-related death rate` = col_double(),
+##   `Non-HIV-related death rate` = col_double()
+## )</code></pre>
+<pre class="r"><code>hiv = hiv_data %&gt;%
+  filter(borough == &quot;All&quot;) %&gt;%
+  select(year, race, hiv_diagnosis_rate, gender) %&gt;%
+  filter(!race == &quot;All&quot;)
+
+ # Spaghetti Plot showing the HIV Diagnosis Rates per race, faceted by gender.
+
+hiv %&gt;%
+  ggplot(aes(x = year, y = hiv_diagnosis_rate, color = race, group = race)) +
+  geom_line() +
+  facet_grid(~gender) +
+   labs(
+    title = &quot;HIV Diagnosis Rates by Race&quot;,
+    x = &quot;Year&quot;,
+    y = &quot;HIV Diagnosis Rates&quot;,
+    caption = &quot;Data from the NYCDOHMH&quot;
+  )</code></pre>
+<p><img src="BJL2150_Exploratory_Data_Analysis_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Other/Unknown category includes people of Native American, multiracial, and unknown races.</p>
+<div id="plwdhi-prevalence" class="section level1">
+<h1>PLWDHI prevalence</h1>
+<pre class="r"><code>  race_prevalence = hiv_data %&gt;%
+    select(age,plwdhi_prevalence, year, uhf, gender, borough, race) %&gt;%
+    filter(uhf ==&quot;All&quot;) %&gt;%
+  filter(!race == &quot;All&quot;) %&gt;%
+  filter(borough == &quot;All&quot;) %&gt;%
+  select(-age, -uhf, -borough)
+
+ two_race_prevalence = hiv_data %&gt;%
+    select(age,plwdhi_prevalence, year, uhf, gender, borough, race) %&gt;%
+    filter(uhf ==&quot;All&quot;) %&gt;%
+  filter(!race == &quot;All&quot;) %&gt;%
+  filter(borough == &quot;All&quot;) %&gt;%
+  select(-age, -uhf, -borough)
+
+  
+  ggplot(race_prevalence, aes(x = year, fill = race)) + 
+  geom_histogram(position = &quot;dodge&quot;, binwidth = 2) +
+    facet_grid(~ gender)</code></pre>
+<p><img src="BJL2150_Exploratory_Data_Analysis_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>race_prevalence %&gt;%
+  ggplot(aes(x = year, y = plwdhi_prevalence, color = race)) + 
+  geom_line() +
+  facet_grid(~gender)</code></pre>
+<p><img src="BJL2150_Exploratory_Data_Analysis_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<div id="prevalence-by-borough" class="section level2">
+<h2>Prevalence by borough</h2>
+<p>Making of spaghetti plot showing persons diagnosed HIV infection by borough over the years.</p>
+<pre class="r"><code> borough_prevalence = hiv_data %&gt;%
+    select(age,plwdhi_prevalence, year, borough, uhf, gender, race) %&gt;%
+    filter(uhf ==&quot;All&quot;) %&gt;%
+   filter(race == &quot;All&quot;) %&gt;%
+   filter(gender == &quot;All&quot;) %&gt;%
+   filter(!borough == &quot;All&quot;) %&gt;%
+  group_by(year, borough)
+
+borough_prevalence %&gt;%
+  ggplot(aes(x = year, y = plwdhi_prevalence, color = borough)) + 
+  geom_line() </code></pre>
+<p><img src="BJL2150_Exploratory_Data_Analysis_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>EDAs to keep:</p>
+<p>Bryce - Bar graph - Death rate type over the years Death rate line graph - Will talk about in paper but not include Percent viral suppression by race and faceted by gender</p>
+<p>Briana- HIV diagnosis rates by race and faceted by gender (can link this with Bryce’s percent viral suppression by race and gender)</p>
+<p>Noah - HIV diagnosis by borough</p>
+<p>David - HIV diagnosis rates by age and faceted by gender</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
