@@ -53,15 +53,37 @@ Other/Unknown category includes people of Native American, multiracial, and unkn
 PLWDHI prevalence
 =================
 
-race\_prevalence = hiv\_data %&gt;% select(age,plwdhi\_prevalence, year, uhf, gender, borough, race) %&gt;% filter(uhf =="All") %&gt;% filter(!race == "All") %&gt;% filter(borough == "All") %&gt;% select(-age, -uhf, -borough)
+``` r
+  race_prevalence = hiv_data %>%
+    select(age,plwdhi_prevalence, year, uhf, gender, borough, race) %>%
+    filter(uhf =="All") %>%
+  filter(!race == "All") %>%
+  filter(borough == "All") %>%
+  select(-age, -uhf, -borough)
 
-two\_race\_prevalence = hiv\_data %&gt;% select(age,plwdhi\_prevalence, year, uhf, gender, borough, race) %&gt;% filter(uhf =="All") %&gt;% filter(!race == "All") %&gt;% filter(borough == "All") %&gt;% select(-age, -uhf, -borough)
+ two_race_prevalence = hiv_data %>%
+    select(age,plwdhi_prevalence, year, uhf, gender, borough, race) %>%
+    filter(uhf =="All") %>%
+  filter(!race == "All") %>%
+  filter(borough == "All") %>%
+  select(-age, -uhf, -borough)
 
-ggplot(race\_prevalence, aes(x = year, fill = race)) + geom\_histogram(position = "dodge", binwidth = 2) + facet\_grid(~ gender)
+  
+  ggplot(race_prevalence, aes(x = year, fill = race)) + 
+  geom_histogram(position = "dodge", binwidth = 2) +
+    facet_grid(~ gender)
+```
 
-race\_prevalence %&gt;% ggplot(aes(x = year, y = plwdhi\_prevalence, color = race)) + geom\_line() + facet\_grid(~gender)
+![](BJL2150_Exploratory_Data_Analysis_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
-\`\`\`
+``` r
+race_prevalence %>%
+  ggplot(aes(x = year, y = plwdhi_prevalence, color = race)) + 
+  geom_line() +
+  facet_grid(~gender)
+```
+
+![](BJL2150_Exploratory_Data_Analysis_files/figure-markdown_github/unnamed-chunk-3-2.png)
 
 Prevalence by borough
 ---------------------
@@ -82,4 +104,14 @@ borough_prevalence %>%
   geom_line() 
 ```
 
-![](BJL2150_Exploratory_Data_Analysis_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](BJL2150_Exploratory_Data_Analysis_files/figure-markdown_github/unnamed-chunk-4-1.png)
+
+EDAs to keep:
+
+Bryce - Bar graph - Death rate type over the years Death rate line graph - Will talk about in paper but not include Percent viral suppression by race and faceted by gender
+
+Briana- HIV diagnosis rates by race and faceted by gender (can link this with Bryce’s percent viral suppression by race and gender)
+
+Noah - HIV diagnosis by borough
+
+David - HIV diagnosis rates by age and faceted by gender
