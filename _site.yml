@@ -3,6 +3,10 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
+    - text: "Big Picture"
+      href: bigpicture.html
+    - text: "Subgroup Analysis"
+      href: subgroup.html
     - text: "About"
       href: about.html
     - icon: fa-envelope fa-lg
