@@ -19,8 +19,8 @@ Data: Source, scraping method, cleaning, etc.
 
 The data that was utilized for this project was the New York City Department of
 Health and MEntal Hygeine HIV/AIDS Surveillance Annual Report. The dataset was 
-downloaded from NYCOpen Data, a website that provides information and data to 
-New Yorkers by the government
+downloaded from NYCOpen Data, an open website that provides information and data to 
+New Yorkers by the NYS government.
 
 
 
