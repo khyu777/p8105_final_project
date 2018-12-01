@@ -13,6 +13,7 @@ The following plots represent key subgroup analyses that can inform HIV related 
 
 
 ```{r setup, include=FALSE}
+#I'm setting up necessary libraries
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
@@ -22,6 +23,7 @@ library(tidyverse)
 Racial and Gender-based disparities in the rate of HIV diagnosis are vital components of informed and effective intervention planning. The visualization below represents the trends in HIV diagnosis rate per 100,000 NYC residents from 2011 to 2015 by gender and race.
 
 ```{r race HIV diagnosis rate, echo = FALSE, message=FALSE, warning=FALSE}
+#Reading in and tidying the data, and for this chunk, getting summary data where data for all of NYC is split by race, original code by Briana, edited by Noah
 hiv_data = 
   read_csv("data/DOHMH_HIV_AIDS_Annual_Report.csv") %>% 
   janitor::clean_names()
@@ -54,6 +56,7 @@ While HIV diagnosis rate is a valuable outcome to understand and quantify, it is
 "
 
 ```{r race HIV viral suppression, echo = FALSE}
+#I am, again, filtering the data to represent all of NYC but split by race, original code by Bryce, edited by Noah
 split_by_race = hiv_data %>% 
   filter(
     age == "All",
@@ -81,7 +84,7 @@ The clear positive finding with this visualization is that viral suppression is 
 An understanding of racial disparities in HIV-related outcomes is a valuable and informative bit of information, but insights can also be drawn from the examination of age. The visualization below examines HIV diagnosis rates in the same manner as the first visualization on the page, but by age and gender:
 
 ```{r age analysis, echo = FALSE}
-
+#Similar filtering to the above plots, but by age groups, and then plotting rates over time by gender and age. Original code by David, edited by Noah
 hiv_age =
   hiv_data %>%
   filter(age != "All", borough == "All", uhf == "All")
