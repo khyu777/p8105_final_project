@@ -1,7 +1,7 @@
 ---
 title: "Subgroup Analysis"
 ---
-###Introduction
+##Introduction
 
 While exploring HIV-related outcomes in New York City, it is critical to understand how demographic factors, e.g. race, sex, and age, may play a role.
 
@@ -14,7 +14,8 @@ library(tidyverse)
 ```
 
 ###HIV Diagnosis Rate by Race and Gender
-```{r race HIV diagnosis rate}
+
+```{r race HIV diagnosis rate, echo = FALSE, message=FALSE, warning=FALSE}
 hiv_data = 
   read_csv("data/DOHMH_HIV_AIDS_Annual_Report.csv") %>% 
   janitor::clean_names()
@@ -38,8 +39,10 @@ hiv_diagnosis_rates %>%
   )
 
 ```
+
 ###HIV Viral Suppression Percentage by Race and Gender
-```{r race HIV viral suppression}
+
+```{r race HIV viral suppression, echo = FALSE}
 split_by_race = hiv_data %>% 
   filter(
     age == "All",
@@ -59,7 +62,10 @@ ggplot(split_by_race, aes(x = year, y = percent_viral_suppression, group = race)
   )
 
 ```
-```{r age analysis}
+
+###HIV Diagnosis Rate by Age and Gender
+
+```{r age analysis, echo = FALSE}
 
 hiv_age =
   hiv_data %>%

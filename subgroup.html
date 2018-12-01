@@ -221,89 +221,22 @@ $(document).ready(function () {
 </div>
 
 
-<div id="introduction" class="section level3">
-<h3>Introduction</h3>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
 <p>While exploring HIV-related outcomes in New York City, it is critical to understand how demographic factors, e.g. race, sex, and age, may play a role.</p>
 <p>The following plots represent key subgroup analyses that can inform HIV related public health practice:</p>
-</div>
 <div id="hiv-diagnosis-rate-by-race-and-gender" class="section level3">
 <h3>HIV Diagnosis Rate by Race and Gender</h3>
-<pre class="r"><code>hiv_data = 
-  read_csv(&quot;data/DOHMH_HIV_AIDS_Annual_Report.csv&quot;) %&gt;% 
-  janitor::clean_names()</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   Year = col_integer(),
-##   Borough = col_character(),
-##   UHF = col_character(),
-##   Gender = col_character(),
-##   Age = col_character(),
-##   Race = col_character(),
-##   `HIV diagnoses` = col_integer(),
-##   `HIV diagnosis rate` = col_double(),
-##   `Concurrent diagnoses` = col_integer(),
-##   `% linked to care within 3 months` = col_integer(),
-##   `AIDS diagnoses` = col_integer(),
-##   `AIDS diagnosis rate` = col_double(),
-##   `PLWDHI prevalence` = col_double(),
-##   `% viral suppression` = col_integer(),
-##   Deaths = col_integer(),
-##   `Death rate` = col_double(),
-##   `HIV-related death rate` = col_double(),
-##   `Non-HIV-related death rate` = col_double()
-## )</code></pre>
-<pre class="r"><code>hiv_diagnosis_rates = hiv_data %&gt;%
-  filter(borough == &quot;All&quot;) %&gt;%
-  select(year, race, hiv_diagnosis_rate, gender) %&gt;%
-  filter(!race == &quot;All&quot;)
-
- # Spaghetti Plot showing the HIV Diagnosis Rates per race, faceted by gender.
-
-hiv_diagnosis_rates %&gt;%
-  ggplot(aes(x = year, y = hiv_diagnosis_rate, color = race, group = race)) +
-  geom_line() +
-  facet_grid(~gender) +
-   labs(
-    title = &quot;HIV Diagnosis Rates per 100,000 by Race and Gender&quot;,
-    x = &quot;Year&quot;,
-    y = &quot;HIV Diagnosis Rates per 100K&quot;,
-    color = &quot;Race&quot;,
-    caption = &quot;Data from the NYCDOHMH&quot;
-  )</code></pre>
-<p><img src="subgroup_files/figure-html/race%20HIV%20diagnosis%20rate-1.png" width="672" /> ###HIV Viral Suppression Percentage by Race and Gender</p>
-<pre class="r"><code>split_by_race = hiv_data %&gt;% 
-  filter(
-    age == &quot;All&quot;,
-    borough == &quot;All&quot;,
-    uhf == &quot;All&quot;,
-    race != &quot;All&quot;
-    ) 
-
-ggplot(split_by_race, aes(x = year, y = percent_viral_suppression, group = race)) +   
-  geom_line(aes(color = race)) +
-  facet_grid(~gender) +
-  labs(
-    title = &quot;Percent Virally Suppressed by Race and Gender over Time&quot;,
-    x = &quot;Year&quot;,
-    y = &quot;Percent Viral Suppression&quot;,
-    color = &quot;Race&quot;
-  )</code></pre>
+<p><img src="subgroup_files/figure-html/race%20HIV%20diagnosis%20rate-1.png" width="672" /></p>
+</div>
+<div id="hiv-viral-suppression-percentage-by-race-and-gender" class="section level3">
+<h3>HIV Viral Suppression Percentage by Race and Gender</h3>
 <p><img src="subgroup_files/figure-html/race%20HIV%20viral%20suppression-1.png" width="672" /></p>
-<pre class="r"><code>hiv_age =
-  hiv_data %&gt;%
-  filter(age != &quot;All&quot;, borough == &quot;All&quot;, uhf == &quot;All&quot;)
-hiv_age %&gt;% 
-  ggplot(aes(year, hiv_diagnosis_rate)) +
-  geom_line(aes(group = age, color = age)) + 
-  facet_wrap(~gender)+
-   labs(
-    title = &quot;HIV Diagnosis Rates per 100,000 by Age and Gender&quot;,
-    x = &quot;Year&quot;,
-    y = &quot;HIV Diagnosis Rates per 100K&quot;,
-    color = &quot;Age Group&quot;,
-    caption = &quot;Data from the NYCDOHMH&quot;
-  )</code></pre>
+</div>
+<div id="hiv-diagnosis-rate-by-age-and-gender" class="section level3">
+<h3>HIV Diagnosis Rate by Age and Gender</h3>
 <p><img src="subgroup_files/figure-html/age%20analysis-1.png" width="672" /></p>
+</div>
 </div>
 
 
