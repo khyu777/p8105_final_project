@@ -1,7 +1,11 @@
 ---
 title: "Subgroup Analysis"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
 ---
-##Introduction
+###Introduction
 
 While exploring HIV-related outcomes in New York City, it is critical to understand how demographic factors, e.g. race, sex, and age, may play a role.
 
@@ -14,6 +18,8 @@ library(tidyverse)
 ```
 
 ###HIV Diagnosis Rate by Race and Gender
+
+Racial and Gender-based disparities in the rate of HIV diagnosis are vital components of informed and effective intervention planning. The visualization below represents the trends in HIV diagnosis rate per 100,000 NYC residents from 2011 to 2015 by gender and race.
 
 ```{r race HIV diagnosis rate, echo = FALSE, message=FALSE, warning=FALSE}
 hiv_data = 
@@ -40,7 +46,12 @@ hiv_diagnosis_rates %>%
 
 ```
 
+HIV diagnosis rates are consistently higher for men compared to women, and for Black and Latino/Hispanic individuals compared to other racial and ethnic groups. While these disparities exist, the overal trends for this outcome of HIV diagnosis rate indicate improvement, with general decreases among many groups, including the Black and Latino/Hispanic groups who face the highest rates. For Black men, as an example, the rate of HIV diagnosis plummeted across these few years from 150 per 100,000 to just over 100 per 100,000.
+
 ###HIV Viral Suppression Percentage by Race and Gender
+
+While HIV diagnosis rate is a valuable outcome to understand and quantify, it is not the only HIV-related variable worth examining. Viral Suppression, which is defined here as the "Proportion of people living with diagnosed HIV infection 13 years of age or older with at least one viral load test during the calendar year whose last HIV viral load value was ≤200 copies/mL", is an equally important outcome. This viral suppression, which massively decreases chances of HIV transmission and improves the general health of an HIV-positive individual, varies by Gender and Race:
+"
 
 ```{r race HIV viral suppression, echo = FALSE}
 split_by_race = hiv_data %>% 
@@ -63,7 +74,11 @@ ggplot(split_by_race, aes(x = year, y = percent_viral_suppression, group = race)
 
 ```
 
+The clear positive finding with this visualization is that viral suppression is increasing among all groups, with the exception of women in the "Other/Unknown" racial category who saw no change overall. While suppression proportions are similar between men and women, it appears that differences exist between racial/ethnic categories. Certain groups with higher rates of HIV diagnosis, such as Black men, can also be seen here with lower rates of viral suppression. Therefore, comprehensive measures should address the factors that lead to infection for vulnerable populations, while also ensuring equitable care and treatment for individuals who are already HIV-Positive.   
+
 ###HIV Diagnosis Rate by Age and Gender
+
+An understanding of racial disparities in HIV-related outcomes is a valuable and informative bit of information, but insights can also be drawn from the examination of age. The visualization below examines HIV diagnosis rates in the same manner as the first visualization on the page, but by age and gender:
 
 ```{r age analysis, echo = FALSE}
 
@@ -83,3 +98,9 @@ hiv_age %>%
   )
 
 ```
+
+While there do not seem to be strong age-based disparities in HIV diagnosis rate among women, with the four central age categories essentially overlapped, men see strong differences, with 20-29 year olds facing the highest rates, followed by 30-39 year olds. Still, the rates among these more vulnerable populations are decreasing over time, and most other groups exhibit either a decrease in diagnosis rate or a flat trend. No groups demonstrate an increasing rate overall. 
+
+###Conclusion
+
+While certain groups face high rates of HIV and lower viral suppression, particularly men of color and men aged 20-39, compared to their peers, these outcomes are improving over time.
