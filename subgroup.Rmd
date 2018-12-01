@@ -1,3 +1,79 @@
 ---
 title: "Subgroup Analysis"
 ---
+###Introduction
+
+While exploring HIV-related outcomes in New York City, it is critical to understand how demographic factors, e.g. race, sex, and age, may play a role.
+
+The following plots represent key subgroup analyses that can inform HIV related public health practice:
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+###HIV Diagnosis Rate by Race and Gender
+```{r race HIV diagnosis rate}
+hiv_data = 
+  read_csv("data/DOHMH_HIV_AIDS_Annual_Report.csv") %>% 
+  janitor::clean_names()
+hiv_diagnosis_rates = hiv_data %>%
+  filter(borough == "All") %>%
+  select(year, race, hiv_diagnosis_rate, gender) %>%
+  filter(!race == "All")
+
+ # Spaghetti Plot showing the HIV Diagnosis Rates per race, faceted by gender.
+
+hiv_diagnosis_rates %>%
+  ggplot(aes(x = year, y = hiv_diagnosis_rate, color = race, group = race)) +
+  geom_line() +
+  facet_grid(~gender) +
+   labs(
+    title = "HIV Diagnosis Rates per 100,000 by Race and Gender",
+    x = "Year",
+    y = "HIV Diagnosis Rates per 100K",
+    color = "Race",
+    caption = "Data from the NYCDOHMH"
+  )
+
+```
+###HIV Viral Suppression Percentage by Race and Gender
+```{r race HIV viral suppression}
+split_by_race = hiv_data %>% 
+  filter(
+    age == "All",
+    borough == "All",
+    uhf == "All",
+    race != "All"
+    ) 
+
+ggplot(split_by_race, aes(x = year, y = percent_viral_suppression, group = race)) +   
+  geom_line(aes(color = race)) +
+  facet_grid(~gender) +
+  labs(
+    title = "Percent Virally Suppressed by Race and Gender over Time",
+    x = "Year",
+    y = "Percent Viral Suppression",
+    color = "Race"
+  )
+
+```
+```{r age analysis}
+
+hiv_age =
+  hiv_data %>%
+  filter(age != "All", borough == "All", uhf == "All")
+hiv_age %>% 
+  ggplot(aes(year, hiv_diagnosis_rate)) +
+  geom_line(aes(group = age, color = age)) + 
+  facet_wrap(~gender)+
+   labs(
+    title = "HIV Diagnosis Rates per 100,000 by Age and Gender",
+    x = "Year",
+    y = "HIV Diagnosis Rates per 100K",
+    color = "Age Group",
+    caption = "Data from the NYCDOHMH"
+  )
+
+```
