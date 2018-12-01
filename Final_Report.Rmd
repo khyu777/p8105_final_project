@@ -10,17 +10,19 @@ output: github_document
 ##**Introduction**
 
 
-###** Motivation**
 
 
 ## **Methods**
 
 Data: Source, scraping method, cleaning, etc.
 
-The data that was utilized for this project was the New York City Department of
-Health and MEntal Hygeine HIV/AIDS Surveillance Annual Report. The dataset was 
+  The data that was utilized for this project was the New York City Department of
+Health and Mntal Hygeine HIV/AIDS Surveillance Annual Report. The dataset was 
 downloaded from NYCOpen Data, an open website that provides information and data to 
-New Yorkers by the NYS government.
+New Yorkers by the NYC government, an imported into R as a csv file. 
+  Within this particular datThe data contained within the dataset were collected between the years 2011 through 2016. The HIV/AIDS surveillance Annual Report contains eighteen variables, including
+year, age, race, HIV diagnoses, deaths, and percent viral suppression. The variables used within the visualizations are a followed:
+
 
 
 
@@ -30,9 +32,9 @@ Exploratory analysis: Visualizations, summaries, and exploratory statistical ana
 
 ##**Results**
 
-###**Statistical Analyses**
 
 
-##**Discussion
+
+##**Discussion**
 
 
