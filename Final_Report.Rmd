@@ -1,10 +1,19 @@
 ---
 title: "Final_Report"
-author: "Noah Kreski, Briana Lettsome,Sunny Siddique, Bryce Wong, David Yu"
-date: "November 29, 2018"
+
+author: "Noah Kreski(Ntk2109), Briana Lettsome(Bjl2150), Sunny Siddique (as5457), 
+Bryce Wong (baw2160), David Yu (ky2288)"
+date: "December 6th, 2018"
 output: github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
+## Methods
+
+Data: Source, scraping method, cleaning, etc.
+
+The data that was utilized for this project was
+
+Exploratory analysis: Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
+
+
