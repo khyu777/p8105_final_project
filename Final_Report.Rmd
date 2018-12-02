@@ -6,6 +6,15 @@ Bryce Wong (baw2160), David Yu (ky2288)"
 date: "December 6th, 2018"
 output: github_document
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(ggridges)
+
+hiv_data = read_csv(file = "./data/DOHMH_HIV_AIDS_Annual_Report.csv") %>%
+  janitor::clean_names()
+```
 
 ##**Introduction**
 
@@ -29,6 +38,26 @@ year, age, race, HIV diagnoses, deaths, and percent viral suppression. The varia
 
 Exploratory analysis: Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
 
+### *Big Group*
+```{r}
+hiv = hiv_data %>%
+  filter(borough == "All") %>%
+  select(year, race, hiv_diagnosis_rate, gender) %>%
+  filter(!race == "All")
+
+hiv %>%
+  ggplot(aes(x = year, y = hiv_diagnosis_rate, color = race, group = race)) +
+  geom_line() +
+  facet_grid(~gender) +
+   labs(
+    title = "HIV Diagnosis Rates by Race",
+    x = "Year",
+    y = "HIV Diagnosis Rates",
+    caption = "Data from the NYCDOHMH"
+  )
+
+
+```
 
 ##**Results**
 
