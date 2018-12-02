@@ -36,9 +36,13 @@ year, age, race, HIV diagnoses, deaths, and percent viral suppression. The varia
 
 
 
-Exploratory analysis: Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
+## **Exploratory analysis**
 
-### *Big Group*
+: Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
+
+###*Big Picture Visualizations*
+
+###*Subgroup Visualizations*
 ```{r}
 hiv = hiv_data %>%
   filter(borough == "All") %>%
@@ -55,9 +59,15 @@ hiv %>%
     y = "HIV Diagnosis Rates",
     caption = "Data from the NYCDOHMH"
   )
-
-
 ```
+
+In order to assess the HIV diagnosis rates by race, the 'All' observations within 
+the borough variable was kept in the dataset (Figure 3). This was done to ensure 
+that the output we sought was not confounded by results specific to each borough, 
+but rather to all boroughs. The variables year, race, gender and HIV diagnosis 
+rates were spepcifically selected for this analysis. Additonally, being that the 
+race variable was being visually assessed, the 'All' observations within the 
+variable was filtered out.
 
 ##**Results**
 

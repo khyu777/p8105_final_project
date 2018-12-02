@@ -231,9 +231,15 @@ $(document).ready(function () {
 <h2><strong>Methods</strong></h2>
 <p>Data: Source, scraping method, cleaning, etc.</p>
 <p>The data that was utilized for this project was the New York City Department of Health and Mntal Hygeine HIV/AIDS Surveillance Annual Report. The dataset was downloaded from NYCOpen Data, an open website that provides information and data to New Yorkers by the NYC government, an imported into R as a csv file. Within this particular datThe data contained within the dataset were collected between the years 2011 through 2016. The HIV/AIDS surveillance Annual Report contains eighteen variables, including year, age, race, HIV diagnoses, deaths, and percent viral suppression. The variables used within the visualizations are a followed:</p>
-<p>Exploratory analysis: Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.</p>
-<div id="big-group" class="section level3">
-<h3><em>Big Group</em></h3>
+</div>
+<div id="exploratory-analysis" class="section level2">
+<h2><strong>Exploratory analysis</strong></h2>
+<p>: Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.</p>
+<div id="big-picture-visualizations" class="section level3">
+<h3><em>Big Picture Visualizations</em></h3>
+</div>
+<div id="subgroup-visualizations" class="section level3">
+<h3><em>Subgroup Visualizations</em></h3>
 <pre class="r"><code>hiv = hiv_data %&gt;%
   filter(borough == &quot;All&quot;) %&gt;%
   select(year, race, hiv_diagnosis_rate, gender) %&gt;%
@@ -250,6 +256,7 @@ hiv %&gt;%
     caption = &quot;Data from the NYCDOHMH&quot;
   )</code></pre>
 <p><img src="Final_Report_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>In order to assess the HIV diagnosis rates by race, the ‘All’ observations within the borough variable was kept in the dataset (Figure 3). This was done to ensure that the output we sought was not confounded by results specific to each borough, but rather to all boroughs. The variables year, race, gender and HIV diagnosis rates were spepcifically selected for this analysis. Additonally, being that the race variable was being visually assessed, the ‘All’ observations within the variable was filtered out.</p>
 </div>
 </div>
 <div id="results" class="section level2">
