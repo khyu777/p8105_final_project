@@ -91,6 +91,27 @@ the males. Furthermore, while there is a decrease in HIV diagnosis rates within
 White and Asian/Pacific Islander males, in females, there appears to be no 
 linear change over the 6-year period.
 
+```{r}
+hiv_age =
+  hiv_data %>%
+  filter(age != "All", borough == "All", uhf == "All")
+
+#HIV diag rate over time by age groups
+hiv_age %>% 
+  ggplot(aes(year, hiv_diagnosis_rate)) +
+  geom_line(aes(group = age, color = age)) + 
+  facet_wrap(~gender) +
+  labs(
+    title = "HIV Diagnosis Rates Over Time by Age Group",
+    x = "Year",
+    y = "HIV Diagnosis Rates",
+    caption = "Figure 4. Data from the NYCDOHMH"
+  )
+```
+
+
+For "HIV
+Diagnosis Rate by Age and Gender" - The data was first filtered to obtain rows that only contained values for gender and age. Then HIV diagnosis rate over time was plotted as a line graph, grouped by age groups and colored accordingly. To see if the rate distribution among age groups differed by gender, the plot was faceted by gender as well.
 ##**Results**
 
 

@@ -259,10 +259,24 @@ hiv %&gt;%
 <p>In order to assess the HIV diagnosis rates by race, the ‘All’ observations within the borough variable was kept in the dataset (Figure 3). This was done to ensure that the output we sought was not confounded by results specific to each borough, but rather to all boroughs. The variables year, race, gender and HIV diagnosis rates were spepcifically selected for this analysis. Additonally, being that the race variable was being visually assessed, the ‘All’ observations within the variable was filtered out. We thought it would have been interesting to observe the differences in in HIV diagnosis rates by race and gender and, a such, the spaghetti plot was faceted by gender.</p>
 <p>Figure 3 illustrates the HIV diagnosis rates by race and faceted by gender over time. It can be observed that, regardless of gender, Blacks have the highest numbers of diagnosis rates with Latinos/Hispanics having the second highest rates over the 6-year period. Furthermore, Asian/Pacific Islander appears to have the lowest numbers of HIV diagnosis rates. There is also an interesting peak observed among the race Other/Unknown observed in the year 2013, that cannot be explained. Additionally, there is also an observed decrease in the rates of HIV diagnosis rates in the Black and Other/Unknown raceson when not looking at differentiation by gender.</p>
 <p>When visually assessing the plot by gender, males have a much higher HIV diagnosis rates compared to females. Looking more closely, the diagnosis rates of Black males are significantly larger compared to Black females with the same distinction being made in all races, though not as wide. In Black males and females, there is a decrease in IV diagnosis rates over time. There is also a slight decrease in the Latino/Hispanic population in females, but an increase in the males. Furthermore, while there is a decrease in HIV diagnosis rates within White and Asian/Pacific Islander males, in females, there appears to be no linear change over the 6-year period.</p>
+<pre class="r"><code>hiv_age =
+  hiv_data %&gt;%
+  filter(age != &quot;All&quot;, borough == &quot;All&quot;, uhf == &quot;All&quot;)
+
+#HIV diag rate over time by age groups
+hiv_age %&gt;% 
+  ggplot(aes(year, hiv_diagnosis_rate)) +
+  geom_line(aes(group = age, color = age)) + 
+  facet_wrap(~gender) +
+  labs(
+    title = &quot;HIV Diagnosis Rates Over Time by Age Group&quot;,
+    x = &quot;Year&quot;,
+    y = &quot;HIV Diagnosis Rates&quot;,
+    caption = &quot;Figure 4. Data from the NYCDOHMH&quot;
+  )</code></pre>
+<p><img src="Final_Report_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>For “HIV Diagnosis Rate by Age and Gender” - The data was first filtered to obtain rows that only contained values for gender and age. Then HIV diagnosis rate over time was plotted as a line graph, grouped by age groups and colored accordingly. To see if the rate distribution among age groups differed by gender, the plot was faceted by gender as well. ##<strong>Results</strong></p>
 </div>
-</div>
-<div id="results" class="section level2">
-<h2><strong>Results</strong></h2>
 </div>
 <div id="discussion" class="section level2">
 <h2><strong>Discussion</strong></h2>
