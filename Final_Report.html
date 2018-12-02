@@ -230,13 +230,31 @@ $(document).ready(function () {
 <div id="methods" class="section level2">
 <h2><strong>Methods</strong></h2>
 <p>Data: Source, scraping method, cleaning, etc.</p>
-<p>The data that was utilized for this project was the New York City Department of Health and Mntal Hygeine HIV/AIDS Surveillance Annual Report. The dataset was downloaded from NYCOpen Data, an open website that provides information and data to New Yorkers by the NYC government, an imported into R as a csv file. Within this particular datThe data contained within the dataset were collected between the years 2011 through 2016. The HIV/AIDS surveillance Annual Report contains eighteen variables, including year, age, race, HIV diagnoses, deaths, and percent viral suppression. The variables used within the visualizations are a followed:</p>
+<p>The data that was utilized for this project was the New York City Department of Health and Mental Hygeine HIV/AIDS Surveillance Annual Report. The dataset was downloaded from NYCOpen Data, an open website that provides information and data to New Yorkers by the NYC government, an imported into R as a csv file. Within this particular datThe data contained within the dataset were collected between the years 2011 through 2016. The HIV/AIDS surveillance Annual Report contains eighteen variables, including year, age, race, HIV diagnoses, deaths, and percent viral suppression. The variables used within the visualizations are a followed:</p>
 </div>
 <div id="exploratory-analysis" class="section level2">
 <h2><strong>Exploratory analysis</strong></h2>
 <p>: Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.</p>
 <div id="big-picture-visualizations" class="section level3">
 <h3><em>Big Picture Visualizations</em></h3>
+<pre class="r"><code>HIV_diagnosis_data = hiv_data%&gt;%
+               janitor::clean_names()%&gt;%
+               filter(uhf %in% c(&quot;All&quot;))%&gt;%
+               filter(borough != &quot;All&quot;)%&gt;%
+               filter(gender == &quot;All&quot;)%&gt;%
+               filter(age == &quot;All&quot;)
+
+HIV_diagnosis_data%&gt;%
+            ggplot(aes(x = year, y = hiv_diagnosis_rate, group = borough, 
+                       color = borough))+geom_point() + geom_line() +
+  labs(
+    title = &quot;HIV Diagnosis Rate by Borough Over time&quot;,
+    x = &quot;Year&quot;,
+    y = &quot;HIV Diagnosis Rates&quot;,
+    caption = &quot;Figure 1. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report&quot;
+  )</code></pre>
+<p><img src="Final_Report_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>In Figure 1, The original dataset was filtered down to get the summary data by borough for each year. Then, a bar plot was used for the HIV diagnosis rates, clustered by the five boroughs for each year in order of decreasing values (from Manhattan to Staten Island). Originally a spaghetti plot was used, however, it felt worthwhile to diversify the analytical methods and emphasize the differences between boroughs, not just the trends.</p>
 </div>
 <div id="subgroup-visualizations" class="section level3">
 <h3><em>Subgroup Visualizations</em></h3>
@@ -250,13 +268,13 @@ hiv %&gt;%
   geom_line() +
   facet_grid(~gender) +
    labs(
-    title = &quot;HIV Diagnosis Rates by Race&quot;,
+    title = &quot;HIV Diagnosis Rates Over Time by Race&quot;,
     x = &quot;Year&quot;,
     y = &quot;HIV Diagnosis Rates&quot;,
-    caption = &quot;Data from the NYCDOHMH&quot;
+    caption = &quot;Figure 3. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report&quot;
   )</code></pre>
-<p><img src="Final_Report_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>In order to assess the HIV diagnosis rates by race, the ‘All’ observations within the borough variable was kept in the dataset (Figure 3). This was done to ensure that the output we sought was not confounded by results specific to each borough, but rather to all boroughs. The variables year, race, gender and HIV diagnosis rates were spepcifically selected for this analysis. Additonally, being that the race variable was being visually assessed, the ‘All’ observations within the variable was filtered out. We thought it would have been interesting to observe the differences in in HIV diagnosis rates by race and gender and, a such, the spaghetti plot was faceted by gender.</p>
+<p><img src="Final_Report_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>In order to assess the HIV diagnosis rates by race, the ‘All’ observations within the borough variable was kept in the dataset (Figure 3). This was done to ensure that the output sought was not confounded by results specific to each borough, but rather to all boroughs. The variables year, race, gender and HIV diagnosis rates were spepcifically selected for this analysis. Additonally, being that the race variable was being visually assessed, the ‘All’ observations within the variable was filtered out. We thought it would have been interesting to observe the differences in HIV diagnosis rates by race and gender and, as such, the spaghetti plot was faceted by gender.</p>
 <p>Figure 3 illustrates the HIV diagnosis rates by race and faceted by gender over time. It can be observed that, regardless of gender, Blacks have the highest numbers of diagnosis rates with Latinos/Hispanics having the second highest rates over the 6-year period. Furthermore, Asian/Pacific Islander appears to have the lowest numbers of HIV diagnosis rates. There is also an interesting peak observed among the race Other/Unknown observed in the year 2013, that cannot be explained. Additionally, there is also an observed decrease in the rates of HIV diagnosis rates in the Black and Other/Unknown raceson when not looking at differentiation by gender.</p>
 <p>When visually assessing the plot by gender, males have a much higher HIV diagnosis rates compared to females. Looking more closely, the diagnosis rates of Black males are significantly larger compared to Black females with the same distinction being made in all races, though not as wide. In Black males and females, there is a decrease in IV diagnosis rates over time. There is also a slight decrease in the Latino/Hispanic population in females, but an increase in the males. Furthermore, while there is a decrease in HIV diagnosis rates within White and Asian/Pacific Islander males, in females, there appears to be no linear change over the 6-year period.</p>
 <pre class="r"><code>hiv_age =
@@ -264,6 +282,7 @@ hiv %&gt;%
   filter(age != &quot;All&quot;, borough == &quot;All&quot;, uhf == &quot;All&quot;)
 
 #HIV diag rate over time by age groups
+
 hiv_age %&gt;% 
   ggplot(aes(year, hiv_diagnosis_rate)) +
   geom_line(aes(group = age, color = age)) + 
@@ -272,10 +291,10 @@ hiv_age %&gt;%
     title = &quot;HIV Diagnosis Rates Over Time by Age Group&quot;,
     x = &quot;Year&quot;,
     y = &quot;HIV Diagnosis Rates&quot;,
-    caption = &quot;Figure 4. Data from the NYCDOHMH&quot;
+    caption = &quot;Figure 4. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report&quot;
   )</code></pre>
-<p><img src="Final_Report_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>For “HIV Diagnosis Rate by Age and Gender” - The data was first filtered to obtain rows that only contained values for gender and age. Then HIV diagnosis rate over time was plotted as a line graph, grouped by age groups and colored accordingly. To see if the rate distribution among age groups differed by gender, the plot was faceted by gender as well. ##<strong>Results</strong></p>
+<p><img src="Final_Report_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>In Figure 4, the data was first filtered to obtain rows that only contained values for gender and age. Then, HIV diagnosis rates over time was plotted as a line graph, grouped by age groups and colored accordingly. To see if the rate distribution among age groups differed by gender, the plot was faceted by gender as well.</p>
 </div>
 </div>
 <div id="discussion" class="section level2">

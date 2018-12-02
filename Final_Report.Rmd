@@ -26,7 +26,7 @@ hiv_data = read_csv(file = "./data/DOHMH_HIV_AIDS_Annual_Report.csv") %>%
 Data: Source, scraping method, cleaning, etc.
 
   The data that was utilized for this project was the New York City Department of
-Health and Mntal Hygeine HIV/AIDS Surveillance Annual Report. The dataset was 
+Health and Mental Hygeine HIV/AIDS Surveillance Annual Report. The dataset was 
 downloaded from NYCOpen Data, an open website that provides information and data to 
 New Yorkers by the NYC government, an imported into R as a csv file. 
   Within this particular datThe data contained within the dataset were collected between the years 2011 through 2016. The HIV/AIDS surveillance Annual Report contains eighteen variables, including
@@ -42,6 +42,34 @@ year, age, race, HIV diagnoses, deaths, and percent viral suppression. The varia
 
 ###*Big Picture Visualizations*
 
+```{r}
+HIV_diagnosis_data = hiv_data%>%
+               janitor::clean_names()%>%
+               filter(uhf %in% c("All"))%>%
+               filter(borough != "All")%>%
+               filter(gender == "All")%>%
+               filter(age == "All")
+
+HIV_diagnosis_data%>%
+            ggplot(aes(x = year, y = hiv_diagnosis_rate, group = borough, 
+                       color = borough))+geom_point() + geom_line() +
+  labs(
+    title = "HIV Diagnosis Rate by Borough Over time",
+    x = "Year",
+    y = "HIV Diagnosis Rates",
+    caption = "Figure 1. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report"
+  )
+```
+
+In Figure 1, The original dataset was filtered down to get the summary data by
+borough for each year. Then, a bar plot was used for the HIV diagnosis rates,
+clustered by the five boroughs for each year in order of decreasing values (from
+Manhattan to Staten Island). Originally a spaghetti plot was used, however, it felt
+worthwhile to diversify the analytical methods and emphasize the differences 
+between boroughs, not just the trends.
+
+
+
 ###*Subgroup Visualizations*
 ```{r}
 hiv = hiv_data %>%
@@ -54,21 +82,21 @@ hiv %>%
   geom_line() +
   facet_grid(~gender) +
    labs(
-    title = "HIV Diagnosis Rates by Race",
+    title = "HIV Diagnosis Rates Over Time by Race",
     x = "Year",
     y = "HIV Diagnosis Rates",
-    caption = "Data from the NYCDOHMH"
+    caption = "Figure 3. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report"
   )
 ```
 
   In order to assess the HIV diagnosis rates by race, the 'All' observations within 
 the borough variable was kept in the dataset (Figure 3). This was done to ensure 
-that the output we sought was not confounded by results specific to each borough, 
+that the output sought was not confounded by results specific to each borough, 
 but rather to all boroughs. The variables year, race, gender and HIV diagnosis 
 rates were spepcifically selected for this analysis. Additonally, being that the 
 race variable was being visually assessed, the 'All' observations within the 
 variable was filtered out. We thought it would have been interesting to observe 
-the differences in in HIV diagnosis rates by race and gender and, a such, the 
+the differences in HIV diagnosis rates by race and gender and, as such, the 
 spaghetti plot was faceted by gender.
 
   Figure 3 illustrates the HIV diagnosis rates by race and faceted by gender over
@@ -97,6 +125,7 @@ hiv_age =
   filter(age != "All", borough == "All", uhf == "All")
 
 #HIV diag rate over time by age groups
+
 hiv_age %>% 
   ggplot(aes(year, hiv_diagnosis_rate)) +
   geom_line(aes(group = age, color = age)) + 
@@ -105,14 +134,19 @@ hiv_age %>%
     title = "HIV Diagnosis Rates Over Time by Age Group",
     x = "Year",
     y = "HIV Diagnosis Rates",
-    caption = "Figure 4. Data from the NYCDOHMH"
+    caption = "Figure 4. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report"
   )
 ```
 
 
-For "HIV
-Diagnosis Rate by Age and Gender" - The data was first filtered to obtain rows that only contained values for gender and age. Then HIV diagnosis rate over time was plotted as a line graph, grouped by age groups and colored accordingly. To see if the rate distribution among age groups differed by gender, the plot was faceted by gender as well.
-##**Results**
+In Figure 4, the data was first filtered to obtain rows that only contained values
+for gender and age. Then, HIV diagnosis rates over time was plotted as a line 
+graph, grouped by age groups and colored accordingly. To see if the rate
+distribution among age groups differed by gender, the plot was faceted by gender 
+as well.
+
+
+
 
 
 
