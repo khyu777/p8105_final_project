@@ -61,13 +61,30 @@ hiv %>%
   )
 ```
 
-In order to assess the HIV diagnosis rates by race, the 'All' observations within 
+  In order to assess the HIV diagnosis rates by race, the 'All' observations within 
 the borough variable was kept in the dataset (Figure 3). This was done to ensure 
 that the output we sought was not confounded by results specific to each borough, 
 but rather to all boroughs. The variables year, race, gender and HIV diagnosis 
 rates were spepcifically selected for this analysis. Additonally, being that the 
 race variable was being visually assessed, the 'All' observations within the 
-variable was filtered out.
+variable was filtered out. We thought it would have been interesting to observe 
+the differencesin in HIV diagnosis rates by race and gender and, a such, the 
+spaghetti plot was faceted by gender.
+  Figure 3 illustrates the HIV diagnosis rates by race and faceted by gender over
+time. It can be observed that, regardless of gender, Blacks have the highest 
+numbers of diagnosis rates with Latinos/Hispanics having the second highest rates
+over the 6-year period. Furthermore, Asian/Pacific Islander appears to have the 
+lowest numbers of HIV diagnosis rates. Interestingly, there is also an observed decrease in the rates of HIV diagnosis rates in the Black and Other/Unknown races
+on when not looking at differentiation by gender.
+  When visually assessing the plot by gender, males have a much higher HIV 
+diagnosis rates compared to females. Looking more closely, the diagnosis rates of
+Black males are significantly larger compared to Black females with the same 
+distinction being made in all races, though not as wide. In Black males and 
+females, there is a decrease in IV diagnosis rates over time. There is also a 
+slight decrease in the Latino/Hispanic population in females, but an increase in 
+the males. Furthermore, while there is a decrease in HIV diagnosis rates within 
+White and Asian/Pacific Islander males, in females, there appears to be no 
+linear change over the 6-year period.
 
 ##**Results**
 
