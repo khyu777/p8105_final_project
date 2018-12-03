@@ -560,6 +560,113 @@ linear_output</code></pre>
 </tr>
 </tbody>
 </table>
+<pre class="r"><code>hiv_clean = HIV_data %&gt;% 
+  janitor::clean_names() %&gt;% 
+  filter(borough != &quot;All&quot;)%&gt;%
+  filter(gender != &quot;All&quot;)%&gt;%
+  filter(age != &quot;All&quot;) %&gt;% 
+  mutate(borough = forcats::fct_relevel(borough, c(&quot;Manhattan&quot;, &quot;Bronx&quot;, &quot;Brooklyn&quot;, &quot;Queens&quot;, &quot;Staten Island&quot;)))
+
+linear_fit = lm(hiv_diagnosis_rate ~ gender + borough + age, data = hiv_clean) 
+
+linear_clean = linear_fit %&gt;%
+  broom::tidy() %&gt;% 
+  mutate(term = str_replace(term, &quot;^borough&quot;, &quot;Borough: &quot;)) %&gt;% 
+  mutate(term = str_replace(term, &quot;^gender&quot;, &quot;Gender: &quot;)) %&gt;% 
+  mutate(term = str_replace(term, &quot;^age&quot;, &quot;Age Group: &quot;))
+
+linear_clean %&gt;% 
+  knitr::kable(digits = 3)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">8.638</td>
+<td align="right">2.026</td>
+<td align="right">4.263</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">Gender: Male</td>
+<td align="right">38.946</td>
+<td align="right">1.264</td>
+<td align="right">30.800</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">Borough: Bronx</td>
+<td align="right">0.330</td>
+<td align="right">2.014</td>
+<td align="right">0.164</td>
+<td align="right">0.870</td>
+</tr>
+<tr class="even">
+<td align="left">Borough: Brooklyn</td>
+<td align="right">-12.317</td>
+<td align="right">1.809</td>
+<td align="right">-6.808</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">Borough: Queens</td>
+<td align="right">-26.336</td>
+<td align="right">1.848</td>
+<td align="right">-14.249</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">Borough: Staten Island</td>
+<td align="right">-33.784</td>
+<td align="right">2.338</td>
+<td align="right">-14.451</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">Age Group: 20 - 29</td>
+<td align="right">42.615</td>
+<td align="right">2.190</td>
+<td align="right">19.458</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">Age Group: 30 - 39</td>
+<td align="right">31.384</td>
+<td align="right">2.190</td>
+<td align="right">14.330</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">Age Group: 40 - 49</td>
+<td align="right">29.515</td>
+<td align="right">2.190</td>
+<td align="right">13.476</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">Age Group: 50 - 59</td>
+<td align="right">13.299</td>
+<td align="right">2.190</td>
+<td align="right">6.072</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">Age Group: 60+</td>
+<td align="right">-5.407</td>
+<td align="right">2.190</td>
+<td align="right">-2.469</td>
+<td align="right">0.014</td>
+</tr>
+</tbody>
+</table>
 
 
 
