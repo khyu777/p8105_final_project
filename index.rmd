@@ -1,16 +1,12 @@
 ---
-title: "Data Science Final Project"
+title: "Identification of trends and disparities in HIV/AIDS for NYC"
 output: 
   html_document:
     toc: TRUE
     toc_float: TRUE
 ---
 
-Bryce Wong (baw2160)
-Sunny Siddique (as5457)
-David Yu (ky2288)
-Noah Kreski (Ntk2109)
-Briana Lettsome (Bjl2150)
+Bryce Wong (baw2160), Sunny Siddique (as5457), David Yu (ky2288), Noah Kreski (Ntk2109), Briana Lettsome (Bjl2150)
 
 ### Introduction
 
