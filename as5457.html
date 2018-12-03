@@ -468,7 +468,98 @@ fit2 %&gt;%
 <pre class="r"><code>fit3 = lm(hiv_diagnosis_rate ~ borough + gender + age, data = hiv)
 linear_output = fit3 %&gt;% 
   broom::tidy() %&gt;% 
-  knitr::kable(digits = 3)</code></pre>
+  knitr::kable(digits = 3)
+linear_output</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">8.732</td>
+<td align="right">2.404</td>
+<td align="right">3.633</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">boroughBrooklyn</td>
+<td align="right">-12.687</td>
+<td align="right">2.174</td>
+<td align="right">-5.835</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">boroughManhattan</td>
+<td align="right">-0.413</td>
+<td align="right">2.216</td>
+<td align="right">-0.186</td>
+<td align="right">0.852</td>
+</tr>
+<tr class="even">
+<td align="left">boroughQueens</td>
+<td align="right">-26.910</td>
+<td align="right">2.216</td>
+<td align="right">-12.142</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">boroughStaten Island</td>
+<td align="right">-33.740</td>
+<td align="right">2.819</td>
+<td align="right">-11.970</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">genderMale</td>
+<td align="right">39.186</td>
+<td align="right">1.388</td>
+<td align="right">28.235</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">age20 - 29</td>
+<td align="right">42.600</td>
+<td align="right">2.404</td>
+<td align="right">17.722</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">age30 - 39</td>
+<td align="right">31.477</td>
+<td align="right">2.404</td>
+<td align="right">13.094</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">age40 - 49</td>
+<td align="right">29.695</td>
+<td align="right">2.404</td>
+<td align="right">12.353</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">age50 - 59</td>
+<td align="right">13.516</td>
+<td align="right">2.404</td>
+<td align="right">5.623</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">age60+</td>
+<td align="right">-5.338</td>
+<td align="right">2.404</td>
+<td align="right">-2.220</td>
+<td align="right">0.026</td>
+</tr>
+</tbody>
+</table>
 
 
 

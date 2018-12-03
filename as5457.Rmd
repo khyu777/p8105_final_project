@@ -82,5 +82,6 @@ fit3 = lm(hiv_diagnosis_rate ~ borough + gender + age, data = hiv)
 linear_output = fit3 %>% 
   broom::tidy() %>% 
   knitr::kable(digits = 3)
+linear_output
 ```
 
