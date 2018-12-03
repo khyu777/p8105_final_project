@@ -17,7 +17,7 @@ hiv_data = read_csv(file = "./data/DOHMH_HIV_AIDS_Annual_Report.csv") %>%
 
 Identification And Analysis of Trends And Disparities In HIV/AIDS For NYC
 
-**Group members**
+**Group Members**
 
 * Bryce Wong (baw2160)
 * Sunny Siddique (as5457)
@@ -177,12 +177,20 @@ hiv_age %>%
   )
 ```
 
-
-In Figure 4, the data was first filtered to obtain rows that only contained values
-for gender and age. Then, HIV diagnosis rates over time was plotted as a line 
-graph, grouped by age groups and colored accordingly. To see if the rate
+  In Figure 4, the data was first filtered to obtain rows that only contained 
+values for gender and age. Then, HIV diagnosis rates over time was plotted as a 
+line graph, grouped by age groups and colored accordingly. To see if the rate
 distribution among age groups differed by gender, the plot was faceted by gender 
 as well.
+  Similar to the observations made in Figure 3, males have a disproportionately
+higher HIV diagnosis rate compared to females. In Figure 4, however, within 
+females, there appears to be a relatively similar distribution of HIV diagnosis
+rates between age groups over time. Conversely, among males, the diagnosis rates
+differs drastically by age groupp. The 20-29 age group has the highest HIV 
+diagnosis rates over time.Individuals within the 60+ age group has the lowest HIV
+diagnosis rates over time. On a whole, for the age groups 20-29, 30-39, and 40-49,
+there appears to be a decrease in HIV diagnosis rates. Tor the remaining age 
+groups, the trend appears to remain constant at the year 2015.
 
 
 
