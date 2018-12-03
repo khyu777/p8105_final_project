@@ -204,8 +204,8 @@ distinction being made in all races, though not as wide. In Black males and
 females, there is a decrease in IV diagnosis rates over time. There is also a 
 slight decrease in the Latino/Hispanic population in females, but an increase in 
 the males. Furthermore, while there is a decrease in HIV diagnosis rates within 
-White and Asian/Pacific Islander males, in females, there appears to be no 
-linear change over time.
+males of the White and Asian/Pacific Islander races, in females, there appears to 
+be no linear change over time.
 
 ```{r}
 split_by_race = hiv_data %>% 
@@ -239,6 +239,20 @@ changes in an outcome for each race across years. A spaghetti plot was thus
 constructed, faceted by gender, showing change in "percent viral suppression" on 
 the y-axis for each race over years (on the x-axis).
 
+   Figure 4 illiustrates the percent viral suppression by race over the years. 
+In both plots, there is an overall increase in the percent viral supporession 
+for each race over time. These results are strongly correlated with Figure 1, which 
+shows HIV-related deaths have decreased over time. Over all, it appears that Whites
+have the largest percent viral suppression compared to all races. 
+  
+  When faced by gender, White males have the highest percent viral suppression over
+time. Contrastingly, Black males have the lowest percent viral suppression, 
+although the total percentage has increased over time. Furthermore, Black females
+have higher suppression compared to their male counterparts. These results
+correspond to the results observed in Figure 3. When looking at females, Whites 
+and Asian/Pacidic Islanders have relatively similar percent viral supporession over
+time. Interestingly, in females, the Other/Unknown race has the lowest percent
+viral suppression.
 
 
 ```{r}
@@ -274,11 +288,6 @@ diagnosis rates over time.Individuals within the 60+ age group has the lowest HI
 diagnosis rates over time. On a whole, for the age groups 20-29, 30-39, and 40-49,
 there appears to be a decrease in HIV diagnosis rates. For the remaining age 
 groups, the trend appears to remain constant at the year 2015.
-
-
-
- 
-
 
 
 **Additional Statistical Analysis**
