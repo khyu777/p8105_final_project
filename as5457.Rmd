@@ -15,3 +15,21 @@ library(ggplot2)
 HIV_data = read_csv("./data/DOHMH_HIV_AIDS_Annual_report.csv")
 ```
 
+cleaning the dataset for additonal analysis...
+```{r}
+hiv = HIV_data %>% 
+               janitor::clean_names()%>%
+               filter(uhf != "All")%>%
+               filter(borough != "All")%>%
+               filter(gender != "All")%>%
+               filter(age != "All")
+```
+
+Are there differences in HIV diagnosis rate between boroughs?
+```{r}
+  fit = lm(hiv_diagnosis_rate ~ borough, data = hiv)
+summary(fit)
+summary(fit)$coef
+```
+
+
