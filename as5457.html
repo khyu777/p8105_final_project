@@ -249,13 +249,13 @@ $(document).ready(function () {
 ## )</code></pre>
 <p>cleaning the dataset for additonal analysis…</p>
 <pre class="r"><code>hiv = HIV_data %&gt;% 
-               janitor::clean_names()%&gt;%
-               filter(uhf != &quot;All&quot;)%&gt;%
-               filter(borough != &quot;All&quot;)%&gt;%
-               filter(gender != &quot;All&quot;)%&gt;%
-               filter(age != &quot;All&quot;)</code></pre>
+  janitor::clean_names(dat = .)%&gt;%
+  filter(uhf != &quot;All&quot;)%&gt;%
+  filter(borough != &quot;All&quot;)%&gt;%
+  filter(gender != &quot;All&quot;)%&gt;%
+  filter(age != &quot;All&quot;)</code></pre>
 <p>Are there differences in HIV diagnosis rate between boroughs?</p>
-<pre class="r"><code>  fit = lm(hiv_diagnosis_rate ~ borough, data = hiv)
+<pre class="r"><code>fit = lm(hiv_diagnosis_rate ~ borough, data=hiv)
 summary(fit)</code></pre>
 <pre><code>## 
 ## Call:
@@ -343,7 +343,6 @@ summary(fit)</code></pre>
 <pre class="r"><code>fit1 = lm(hiv_diagnosis_rate ~ age, data = hiv)
 fit1 %&gt;% 
   broom::tidy() %&gt;% 
-  mutate(term = str_replace(term, &quot;^borough&quot;, &quot;Borough: &quot;)) %&gt;%
   knitr::kable(digits = 3)</code></pre>
 <table>
 <thead>
@@ -401,6 +400,65 @@ fit1 %&gt;%
 </tbody>
 </table>
 <p>Compared to 13-19 age group, 20-29 year olds have 42.6 more HIV diagnoses on average.</p>
+<p>What about race?</p>
+<pre class="r"><code>race_clean = HIV_data %&gt;% 
+  janitor::clean_names() %&gt;% 
+  filter(race != &quot;All&quot;) %&gt;% 
+  mutate(race = forcats::fct_relevel(race, c(&quot;White&quot;, &quot;Black&quot;, &quot;Latino/Hispanic&quot;, &quot;Asian/Pacific Islander&quot;, &quot;Other/Unknown&quot;)))
+
+fit2 = lm(hiv_diagnosis_rate ~ race, data = race_clean)
+fit2 %&gt;% 
+  broom::tidy() %&gt;% 
+  knitr::kable(digits = 3)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">29.700</td>
+<td align="right">2.663</td>
+<td align="right">11.151</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">raceBlack</td>
+<td align="right">52.822</td>
+<td align="right">3.767</td>
+<td align="right">14.024</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">raceLatino/Hispanic</td>
+<td align="right">17.978</td>
+<td align="right">3.767</td>
+<td align="right">4.773</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">raceAsian/Pacific Islander</td>
+<td align="right">-15.512</td>
+<td align="right">3.767</td>
+<td align="right">-4.118</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">raceOther/Unknown</td>
+<td align="right">-7.739</td>
+<td align="right">3.767</td>
+<td align="right">-2.055</td>
+<td align="right">0.04</td>
+</tr>
+</tbody>
+</table>
+<p>Compared to Whites, all other racial groups have a significantly different HIV diagnosis rate.</p>
 
 
 

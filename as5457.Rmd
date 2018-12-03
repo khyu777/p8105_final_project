@@ -16,18 +16,19 @@ HIV_data = read_csv("./data/DOHMH_HIV_AIDS_Annual_report.csv")
 ```
 
 cleaning the dataset for additonal analysis...
+
 ```{r}
 hiv = HIV_data %>% 
-               janitor::clean_names()%>%
-               filter(uhf != "All")%>%
-               filter(borough != "All")%>%
-               filter(gender != "All")%>%
-               filter(age != "All")
+  janitor::clean_names(dat = .)%>%
+  filter(uhf != "All")%>%
+  filter(borough != "All")%>%
+  filter(gender != "All")%>%
+  filter(age != "All")
 ```
 
 Are there differences in HIV diagnosis rate between boroughs?
 ```{r}
-  fit = lm(hiv_diagnosis_rate ~ borough, data = hiv)
+fit = lm(hiv_diagnosis_rate ~ borough, data=hiv)
 summary(fit)
 summary(fit)$coef
 ```
@@ -47,10 +48,22 @@ Is age a significant predictor of hiv diagnosis rate?
 fit1 = lm(hiv_diagnosis_rate ~ age, data = hiv)
 fit1 %>% 
   broom::tidy() %>% 
-  mutate(term = str_replace(term, "^borough", "Borough: ")) %>%
   knitr::kable(digits = 3)
 ```
 
 Compared to 13-19 age group, 20-29 year olds have 42.6 more HIV diagnoses on average. 
 
+What about race?
+```{r}
+race_clean = HIV_data %>% 
+  janitor::clean_names() %>% 
+  filter(race != "All") %>% 
+  mutate(race = forcats::fct_relevel(race, c("White", "Black", "Latino/Hispanic", "Asian/Pacific Islander", "Other/Unknown")))
 
+fit2 = lm(hiv_diagnosis_rate ~ race, data = race_clean)
+fit2 %>% 
+  broom::tidy() %>% 
+  knitr::kable(digits = 3)
+```
+
+Compared to Whites, all other racial groups have a significantly different HIV diagnosis rate. 
