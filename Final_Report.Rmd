@@ -1,8 +1,5 @@
 ---
-title: "Final_Report"
-
-author: "Noah Kreski(Ntk2109), Briana Lettsome(Bjl2150), Sunny Siddique (As5457), 
-Bryce Wong (baw2160), David Yu (ky2288)"
+title: "Data Science I: Final Report"
 date: "December 6th, 2018"
 output: github_document
 ---
@@ -15,6 +12,17 @@ library(ggridges)
 hiv_data = read_csv(file = "./data/DOHMH_HIV_AIDS_Annual_Report.csv") %>%
   janitor::clean_names()
 ```
+
+##**Project Title**
+Identification And Analysis of Trends And Disparities In HIV/AIDS For NYC
+
+##**Group members**
+* Bryce Wong (baw2160)
+* Sunny Siddique (as5457)
+* David Yu (ky2288)
+* Noah Kreski (Ntk2109)
+* Briana Lettsome (Bjl2150)
+
 
 ##**Introduction**
 
