@@ -285,6 +285,122 @@ summary(fit)</code></pre>
 ## boroughManhattan      -0.4127381   2.771310 -0.1489325 8.816188e-01
 ## boroughQueens        -26.9104048   2.771310 -9.7103562 6.570850e-22
 ## boroughStaten Island -33.7398214   3.524739 -9.5722895 2.404334e-21</code></pre>
+<p>Trying to tidy up the output</p>
+<pre class="r"><code>fit %&gt;% 
+  broom::tidy() %&gt;% 
+  mutate(term = str_replace(term, &quot;^borough&quot;, &quot;Borough: &quot;)) %&gt;%
+  knitr::kable(digits = 3)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">46.984</td>
+<td align="right">2.125</td>
+<td align="right">22.105</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">Borough: Brooklyn</td>
+<td align="right">-12.687</td>
+<td align="right">2.719</td>
+<td align="right">-4.666</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">Borough: Manhattan</td>
+<td align="right">-0.413</td>
+<td align="right">2.771</td>
+<td align="right">-0.149</td>
+<td align="right">0.882</td>
+</tr>
+<tr class="even">
+<td align="left">Borough: Queens</td>
+<td align="right">-26.910</td>
+<td align="right">2.771</td>
+<td align="right">-9.710</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">Borough: Staten Island</td>
+<td align="right">-33.740</td>
+<td align="right">3.525</td>
+<td align="right">-9.572</td>
+<td align="right">0.000</td>
+</tr>
+</tbody>
+</table>
+<p>Compared to the Bronx, all neighborhoods have statistically significant infection rates.</p>
+<p>Is age a significant predictor of hiv diagnosis rate?</p>
+<pre class="r"><code>fit1 = lm(hiv_diagnosis_rate ~ age, data = hiv)
+fit1 %&gt;% 
+  broom::tidy() %&gt;% 
+  mutate(term = str_replace(term, &quot;^borough&quot;, &quot;Borough: &quot;)) %&gt;%
+  knitr::kable(digits = 3)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">15.284</td>
+<td align="right">2.041</td>
+<td align="right">7.489</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">age20 - 29</td>
+<td align="right">42.600</td>
+<td align="right">2.886</td>
+<td align="right">14.761</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">age30 - 39</td>
+<td align="right">31.477</td>
+<td align="right">2.886</td>
+<td align="right">10.906</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">age40 - 49</td>
+<td align="right">29.695</td>
+<td align="right">2.886</td>
+<td align="right">10.289</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">age50 - 59</td>
+<td align="right">13.516</td>
+<td align="right">2.886</td>
+<td align="right">4.683</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">age60+</td>
+<td align="right">-5.338</td>
+<td align="right">2.886</td>
+<td align="right">-1.849</td>
+<td align="right">0.065</td>
+</tr>
+</tbody>
+</table>
+<p>Compared to 13-19 age group, 20-29 year olds have 42.6 more HIV diagnoses on average.</p>
 
 
 
