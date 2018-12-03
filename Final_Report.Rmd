@@ -1,7 +1,7 @@
 ---
 title: "Final_Report"
 
-author: "Noah Kreski(Ntk2109), Briana Lettsome(Bjl2150), Sunny Siddique (as5457), 
+author: "Noah Kreski(Ntk2109), Briana Lettsome(Bjl2150), Sunny Siddique (As5457), 
 Bryce Wong (baw2160), David Yu (ky2288)"
 date: "December 6th, 2018"
 output: github_document
@@ -43,12 +43,16 @@ year, age, race, HIV diagnoses, deaths, and percent viral suppression. The varia
 ###*Big Picture Visualizations*
 
 ```{r}
+# Developing the code to visually assess HIV diagnosis rates over time by borough
+
 HIV_diagnosis_data = hiv_data%>%
                janitor::clean_names()%>%
                filter(uhf %in% c("All"))%>%
                filter(borough != "All")%>%
                filter(gender == "All")%>%
                filter(age == "All")
+
+# Creating a plot to visually assess the above dataframe.
 
 HIV_diagnosis_data%>%
             ggplot(aes(x = year, y = hiv_diagnosis_rate, group = borough, 
@@ -61,13 +65,24 @@ HIV_diagnosis_data%>%
   )
 ```
 
-In Figure 1, The original dataset was filtered down to get the summary data by
+   In Figure 1, The original dataset was filtered down to get the summary data by
 borough for each year. Then, a bar plot was used for the HIV diagnosis rates,
 clustered by the five boroughs for each year in order of decreasing values (from
 Manhattan to Staten Island). Originally a spaghetti plot was used, however, it felt
 worthwhile to diversify the analytical methods and emphasize the differences 
 between boroughs, not just the trends.
 
+  Figure 1 illustrates the HIV diagnosis rate by borough over time. It can be
+observed that, over time, the HIV diagnosis rates have decreased in all of the
+boroughs, except for Staten Island. For this particular borough, the HIV diagnosis
+rate actually increased in the years 2013 and 2016. Additionally, there is also 
+an observed spike in diagnosis rates in the year 2014 for Brooklyn. 
+
+Also observed, over time, the Manhattan borough has the highest HIV diagnosis 
+rate of all the NYC boroughs while Staten Island has the least. However, in 2015,
+the Bronx has a higher number of HIV diagnosis rates compared to Manhattan. Lastly,
+the Queens borough appears to have a relatively static change in HIV diagnosis
+rates.
 
 
 ###*Subgroup Visualizations*

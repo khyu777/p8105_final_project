@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Noah Kreski(Ntk2109), Briana Lettsome(Bjl2150), Sunny Siddique (as5457), Bryce Wong (baw2160), David Yu (ky2288)" />
+<meta name="author" content="Noah Kreski(Ntk2109), Briana Lettsome(Bjl2150), Sunny Siddique (As5457), Bryce Wong (baw2160), David Yu (ky2288)" />
 
 
 <title>Final_Report</title>
@@ -218,7 +218,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Final_Report</h1>
-<h4 class="author"><em>Noah Kreski(Ntk2109), Briana Lettsome(Bjl2150), Sunny Siddique (as5457), Bryce Wong (baw2160), David Yu (ky2288)</em></h4>
+<h4 class="author"><em>Noah Kreski(Ntk2109), Briana Lettsome(Bjl2150), Sunny Siddique (As5457), Bryce Wong (baw2160), David Yu (ky2288)</em></h4>
 <h4 class="date"><em>December 6th, 2018</em></h4>
 
 </div>
@@ -237,12 +237,16 @@ $(document).ready(function () {
 <p>: Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.</p>
 <div id="big-picture-visualizations" class="section level3">
 <h3><em>Big Picture Visualizations</em></h3>
-<pre class="r"><code>HIV_diagnosis_data = hiv_data%&gt;%
+<pre class="r"><code># Developing the code to visually assess HIV diagnosis rates over time by borough
+
+HIV_diagnosis_data = hiv_data%&gt;%
                janitor::clean_names()%&gt;%
                filter(uhf %in% c(&quot;All&quot;))%&gt;%
                filter(borough != &quot;All&quot;)%&gt;%
                filter(gender == &quot;All&quot;)%&gt;%
                filter(age == &quot;All&quot;)
+
+# Creating a plot to visually assess the above dataframe.
 
 HIV_diagnosis_data%&gt;%
             ggplot(aes(x = year, y = hiv_diagnosis_rate, group = borough, 
@@ -255,6 +259,8 @@ HIV_diagnosis_data%&gt;%
   )</code></pre>
 <p><img src="Final_Report_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>In Figure 1, The original dataset was filtered down to get the summary data by borough for each year. Then, a bar plot was used for the HIV diagnosis rates, clustered by the five boroughs for each year in order of decreasing values (from Manhattan to Staten Island). Originally a spaghetti plot was used, however, it felt worthwhile to diversify the analytical methods and emphasize the differences between boroughs, not just the trends.</p>
+<p>Figure 1 illustrates the HIV diagnosis rate by borough over time. It can be observed that, over time, the HIV diagnosis rates have decreased in all of the boroughs, except for Staten Island. For this particular borough, the HIV diagnosis rate actually increased in the years 2013 and 2016. Additionally, there is also an observed spike in diagnosis rates in the year 2014 for Brooklyn.</p>
+<p>Also observed, over time, the Manhattan borough has the highest HIV diagnosis rate of all the NYC boroughs while Staten Island has the least. However, in 2015, the Bronx has a higher number of HIV diagnosis rates compared to Manhattan. Lastly, the Queens borough appears to have a relatively static change in HIV diagnosis rates.</p>
 </div>
 <div id="subgroup-visualizations" class="section level3">
 <h3><em>Subgroup Visualizations</em></h3>
