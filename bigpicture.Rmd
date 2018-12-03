@@ -6,7 +6,7 @@ output:
     toc_float: TRUE
 ---
 
-###Introduction
+###Introduction - should we do plotly?
 
 In the continued fight against HIV/AIDS, New York City is instrumental in upholding the New York state plan to ends the AIDS epidemic by 2020. To guide this progress, we must be able to understand both the level of burden and the improvements made over time.
 
