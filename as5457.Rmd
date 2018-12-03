@@ -67,3 +67,41 @@ fit2 %>%
 ```
 
 Compared to Whites, all other racial groups have a significantly different HIV diagnosis rate. 
+
+let's fit in a simple linear regression model
+```{r}
+lin_reg = HIV_data %>%
+  janitor::clean_names() %>% 
+  filter(borough != "All")%>%
+  filter(gender != "All")%>%
+  filter(age != "All")
+```
+
+```{r}
+fit3 = lm(hiv_diagnosis_rate ~ borough + gender + age, data = hiv)
+linear_output = fit3 %>% 
+  broom::tidy() %>% 
+  knitr::kable(digits = 3)
+linear_output
+```
+
+
+```{r}
+hiv_clean = HIV_data %>% 
+  janitor::clean_names() %>% 
+  filter(borough != "All")%>%
+  filter(gender != "All")%>%
+  filter(age != "All") %>% 
+  mutate(borough = forcats::fct_relevel(borough, c("Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island")))
+
+linear_fit = lm(hiv_diagnosis_rate ~ gender + borough + age, data = hiv_clean) 
+
+linear_clean = linear_fit %>%
+  broom::tidy() %>% 
+  mutate(term = str_replace(term, "^borough", "Borough: ")) %>% 
+  mutate(term = str_replace(term, "^gender", "Gender: ")) %>% 
+  mutate(term = str_replace(term, "^age", "Age Group: "))
+
+linear_clean %>% 
+  knitr::kable(digits = 3)
+```
