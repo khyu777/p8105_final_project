@@ -10,7 +10,7 @@ output:
 
 In the continued fight against HIV/AIDS, New York City is instrumental in upholding the New York state plan to ends the AIDS epidemic by 2020. To guide this progress, we must be able to understand both the level of burden and the improvements made over time.
 
-This page is dedicated visualizations that highlight big picture analyses  of HIV's impact on New York City:
+This page is dedicated to visualizations that highlight big picture analyses  of HIV's impact on New York City:
 
 ```{r setup, include=FALSE}
 #Loading libraries:
@@ -28,7 +28,7 @@ hiv_data = read_csv("./data/DOHMH_HIV_AIDS_Annual_Report.csv") %>%
 
 ### Death Rates (In Relation to HIV) Over the Years
 
-How much HIV contributes to the overall death rate in New York City over the years can illustrate how the combined effects of implemented interventions, policies, and strategies have altered the effects of HIV.
+How much HIV-related causes contribute to the overall death rate for people living with HIV in New York City over the years can illustrate how the combined effects of implemented interventions, policies, and strategies have altered the impact of HIV.
 
 The following stacked bar graph highlights the extent to which deaths related to HIV/AIDS contribute to the overall number of deaths per 1,000 people, mid-year, living with HIV/AIDS. Changes in the contribution of HIV-related deaths are shown from the years 2011 to 2015.
 
@@ -95,7 +95,7 @@ HIV_diagnosis_data %>%
   labs(title = "HIV Diagnosis Rate by Borough over Time", y = "HIV Diagnosis Rate", x = "Year", fill = "Borough")
 ```
 
-HIV diagnoses are not equally distributed between boroughs. Across the years, Manhattan has consistently seen the highest rate of HIV diagnoses per 100,000 residents, followed by the Bronx, then Brooklyn, then Queens, and finally Staten Island. Of note, however, are the downwards trends in diagnosis rate for all three of the most disproportionately impacted boroughs. Meanwhile, rates in diagnosis have remained relatively stable within Queens and Staten Island. 
+HIV diagnoses are not equally distributed between boroughs. Across the years, Manhattan has consistently seen the highest rate of HIV diagnoses per 100,000 residents, followed by the Bronx, then Brooklyn, then Queens, and finally Staten Island. Of note, however, are the downwards trends in diagnosis rate for all three of the most disproportionately-impacted boroughs. Meanwhile, rates in diagnosis have remained relatively stable within Queens and Staten Island. 
 
 While the relative ranking in diagnosis rate has also remained generally consistent from 2011-2015 (e.g., Manhattan is usually the borough with the highest level of HIV diagnoses), 2015 saw Manhattan diagnosing fewer cases of HIV than the Bronx for the first time. This, along with dropping rates for Bronx and Brooklyn, imply improvements amongst these three heavily-burdened areas. Unfortunately, the lack of improvement amongst the remaining boroughs might reveal gaps in progress for certain geographic areas.
 
