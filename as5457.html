@@ -459,6 +459,16 @@ fit2 %&gt;%
 </tbody>
 </table>
 <p>Compared to Whites, all other racial groups have a significantly different HIV diagnosis rate.</p>
+<p>let’s fit in a simple linear regression model</p>
+<pre class="r"><code>lin_reg = HIV_data %&gt;%
+  janitor::clean_names() %&gt;% 
+  filter(borough != &quot;All&quot;)%&gt;%
+  filter(gender != &quot;All&quot;)%&gt;%
+  filter(age != &quot;All&quot;)</code></pre>
+<pre class="r"><code>fit3 = lm(hiv_diagnosis_rate ~ borough + gender + age, data = hiv)
+linear_output = fit3 %&gt;% 
+  broom::tidy() %&gt;% 
+  knitr::kable(digits = 3)</code></pre>
 
 
 
