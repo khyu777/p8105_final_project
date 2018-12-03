@@ -45,7 +45,7 @@ Despite efforts to reduce the number of new infections, the HIV Surveillance Ann
 
 
 
-## **Methods**
+**Methods**
 
 Data: Source, scraping method, cleaning, etc.
 
@@ -60,11 +60,11 @@ year, age, race, HIV diagnoses, deaths, and percent viral suppression. The varia
 
 
 
-## **Exploratory analysis**
+**Exploratory analysis**
 
 : Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
 
-###*Big Picture Visualizations*
+**Big Picture Visualizations**
 
 ```{r}
 # Developing the code to visually assess HIV diagnosis rates over time by borough
@@ -109,7 +109,7 @@ the Queens borough appears to have a relatively static change in HIV diagnosis
 rates.
 
 
-###*Subgroup Visualizations*
+**Subgroup Visualizations**
 ```{r}
 hiv = hiv_data %>%
   filter(borough == "All") %>%
@@ -187,9 +187,37 @@ as well.
 
 
 
+**Additional Statistical Analysis**
 
+Our exploratory data visualizations indicated that there are strong disparities in HIV Infection Rates amongst the five boroughs, various age groups and genders. As a result, we decided to fit a multiple linear regression model to compute parameter estimates and to see whether these disparities are statistically significant at the 5% level of significance.
 
+```{r}
+hiv_clean = hiv_data %>% 
+  janitor::clean_names() %>% 
+  filter(borough != "All")%>%
+  filter(gender != "All")%>%
+  filter(age != "All") %>% #Filtering out aggregate variables
+  mutate(borough = forcats::fct_relevel(borough, c("Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island"))) 
+#Reordering to make Manhattan the reference borough.
 
-##**Discussion**
+linear_fit = lm(hiv_diagnosis_rate ~ gender + borough + age, data = hiv_clean) 
+
+linear_clean = linear_fit %>%
+  broom::tidy() %>% 
+  mutate(term = str_replace(term, "^borough", "Borough: ")) %>% 
+  mutate(term = str_replace(term, "^gender", "Gender: ")) %>% 
+  mutate(term = str_replace(term, "^age", "Age Group: "))
+
+linear_clean %>% 
+  knitr::kable(digits = 3)
+```
+
+Notable results from our multiple linear regression analysis include:
+
+* Compared to Manhattan, all boroughs have a statistically significantly different HIV infection rate (p<0.01), adjusting for gender and age group. In particular, on average, the Bronx has a 0.330 percentage point higher HIV infection rate compared to Manhattan, adjusting for gender and age group. 
+* On average, males have a 38.9 percentage point higher HIV infection rate compared to females, adjusting for borough and age group.
+* On average, compared to 13-19 year olds, 20-29 year olds have a 42.6 percentage point higher HIV infection rate (p<0.01), adjusting for gender and borough. With age, the mean difference in HIV infection rate appears to decrease, adjusting for gender and borough. 
+
+**Discussion**
 
 **Data Can Be Found Here**
