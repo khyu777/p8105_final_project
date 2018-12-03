@@ -13,10 +13,12 @@ hiv_data = read_csv(file = "./data/DOHMH_HIV_AIDS_Annual_Report.csv") %>%
   janitor::clean_names()
 ```
 
-##**Project Title**
+**Project Title**
+
 Identification And Analysis of Trends And Disparities In HIV/AIDS For NYC
 
-##**Group members**
+**Group members**
+
 * Bryce Wong (baw2160)
 * Sunny Siddique (as5457)
 * David Yu (ky2288)
@@ -24,8 +26,9 @@ Identification And Analysis of Trends And Disparities In HIV/AIDS For NYC
 * Briana Lettsome (Bjl2150)
 
 
-##**Introduction**
+**Motivation**
 
+According to the the past decade or so, improvements in drug therapies and prevention intervations have led to a decreased number of AIDS cases. In June, 2014, New York Governor Andrew Cuomo announced a new strategy designed to "End the Epidemic" in the state through a combination of increased HIV screening and testing, promotion of Pre-exposure Prophylaxis (PrEP) and improved linkage and retention in clinical care for HIV-positive persons. Since then, the New York City Department of Health and Mental Hygiene (DOHMH) reported a decline in new infections of nearly 8 percent annually or approximately 15% since the campaign was launched.
 
 
 
