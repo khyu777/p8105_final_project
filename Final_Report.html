@@ -256,6 +256,30 @@ $(document).ready(function () {
 </dd>
 </dl>
 <p><strong>Big Picture Visualizations</strong></p>
+<pre class="r"><code>hiv_year_data = hiv_data %&gt;% 
+  filter(
+    borough == &quot;All&quot;,
+    uhf == &quot;All&quot;,
+    gender == &quot;All&quot;,
+    age == &quot;All&quot;,
+    race == &quot;All&quot;
+  )
+
+all_death_rates = hiv_year_data %&gt;% 
+  gather(key = death_rate_type, value = death_rate_nums, death_rate:non_hiv_related_death_rate) %&gt;% 
+  filter(death_rate_nums != 99999)
+
+stacked_death_plot = all_death_rates %&gt;% 
+  filter(death_rate_type != &quot;death_rate&quot;)
+
+ggplot(stacked_death_plot, aes(x = year, y = death_rate_nums, group = death_rate_type)) +   
+  geom_col(aes(fill = death_rate_type)) +
+  labs(
+    title = &quot;Death Rate Types Over the Years&quot;,
+    x = &quot;Year&quot;,
+    y = &quot;Rate&quot;,
+    Caption = &quot;Figure 1. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report&quot;  )</code></pre>
+<p><img src="Final_Report_files/figure-html/unnamed-chunk-1-1.png" width="672" /> Data was first filtered so that the resulting data frame included only observations that aggregated results across all boroughs, UHFs, genders, ages, and races. This data frame was then tidied so that death rate type (i.e. “HIV-related death rate,” “Non-HIV-related death rate,” and overall “death rate”) was a single variable with the accompanying rate value in a separate variable column. Any observation that had a rate value of “99999” was filtered out, as this represented an observation where rate value was not calculated. Any observation where the death rate type was the total death rate was also filtered out. A stacked bar graph was then constructed with rate values plotted on the y-axis and year on the x-axis. Each bar represents the overall death rate per a year, segmented by death rate type (“HIV-related” and “Non-HIV-related”).</p>
 <pre class="r"><code># Developing the code to visually assess HIV diagnosis rates over time by borough
 
 HIV_diagnosis_data = hiv_data%&gt;%
@@ -274,11 +298,11 @@ HIV_diagnosis_data%&gt;%
     title = &quot;HIV Diagnosis Rate by Borough Over time&quot;,
     x = &quot;Year&quot;,
     y = &quot;HIV Diagnosis Rates&quot;,
-    caption = &quot;Figure 1. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report&quot;
+    caption = &quot;Figure 2. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report&quot;
   )</code></pre>
-<p><img src="Final_Report_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>In Figure 1, The original dataset was filtered down to get the summary data by borough for each year. Then, a bar plot was used for the HIV diagnosis rates, clustered by the five boroughs for each year in order of decreasing values (from Manhattan to Staten Island). Originally a spaghetti plot was used, however, it felt worthwhile to diversify the analytical methods and emphasize the differences between boroughs, not just the trends.</p>
-<p>Figure 1 illustrates the HIV diagnosis rate by borough over time. It can be observed that, over time, the HIV diagnosis rates have decreased in all of the boroughs, except for Staten Island. For this particular borough, the HIV diagnosis rate actually increased in the years 2013 and 2016. Additionally, there is also an observed spike in diagnosis rates in the year 2014 for Brooklyn.</p>
+<p><img src="Final_Report_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>In Figure 2, The original dataset was filtered down to get the summary data by borough for each year. Then, a bar plot was used for the HIV diagnosis rates, clustered by the five boroughs for each year in order of decreasing values (from Manhattan to Staten Island). Originally a spaghetti plot was used, however, it felt worthwhile to diversify the analytical methods and emphasize the differences between boroughs, not just the trends.</p>
+<p>Figure 2 illustrates the HIV diagnosis rate by borough over time. It can be observed that, over time, the HIV diagnosis rates have decreased in all of the boroughs, except for Staten Island. For this particular borough, the HIV diagnosis rate actually increased in the years 2013 and 2016. Additionally, there is also an observed spike in diagnosis rates in the year 2014 for Brooklyn.</p>
 <p>Also observed, over time, the Manhattan borough has the highest HIV diagnosis rate of all the NYC boroughs while Staten Island has the least. However, in 2015, the Bronx has a higher number of HIV diagnosis rates compared to Manhattan. Lastly, the Queens borough appears to have a relatively static change in HIV diagnosis rates.</p>
 <p><strong>Subgroup Visualizations</strong></p>
 <pre class="r"><code>hiv = hiv_data %&gt;%
@@ -296,7 +320,7 @@ hiv %&gt;%
     y = &quot;HIV Diagnosis Rates&quot;,
     caption = &quot;Figure 3. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report&quot;
   )</code></pre>
-<p><img src="Final_Report_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="Final_Report_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>In order to assess the HIV diagnosis rates by race, the ‘All’ observations within the borough variable was kept in the dataset (Figure 3). This was done to ensure that the output sought was not confounded by results specific to each borough, but rather to all boroughs. The variables year, race, gender and HIV diagnosis rates were spepcifically selected for this analysis. Additonally, being that the race variable was being visually assessed, the ‘All’ observations within the variable was filtered out. We thought it would have been interesting to observe the differences in HIV diagnosis rates by race and gender and, as such, the spaghetti plot was faceted by gender.</p>
 <p>Figure 3 illustrates the HIV diagnosis rates by race and faceted by gender over time. It can be observed that, regardless of gender, Blacks have the highest numbers of diagnosis rates with Latinos/Hispanics having the second highest rates over the 6-year period. Furthermore, Asian/Pacific Islander appears to have the lowest numbers of HIV diagnosis rates. There is also an interesting peak observed among the race Other/Unknown observed in the year 2013, that cannot be explained. Additionally, there is also an observed decrease in the rates of HIV diagnosis rates in the Black and Other/Unknown raceson when not looking at differentiation by gender.</p>
 <p>When visually assessing the plot by gender, males have a much higher HIV diagnosis rates compared to females. Looking more closely, the diagnosis rates of Black males are significantly larger compared to Black females with the same distinction being made in all races, though not as wide. In Black males and females, there is a decrease in IV diagnosis rates over time. There is also a slight decrease in the Latino/Hispanic population in females, but an increase in the males. Furthermore, while there is a decrease in HIV diagnosis rates within White and Asian/Pacific Islander males, in females, there appears to be no linear change over the 6-year period.</p>
@@ -316,8 +340,8 @@ hiv_age %&gt;%
     y = &quot;HIV Diagnosis Rates&quot;,
     caption = &quot;Figure 4. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report&quot;
   )</code></pre>
-<p><img src="Final_Report_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>In Figure 4, the data was first filtered to obtain rows that only contained values for gender and age. Then, HIV diagnosis rates over time was plotted as a line graph, grouped by age groups and colored accordingly. To see if the rate distribution among age groups differed by gender, the plot was faceted by gender as well. Similar to the observations made in Figure 3, males have a disproportionately higher HIV diagnosis rate compared to females. In Figure 4, however, within females, there appears to be a relatively similar distribution of HIV diagnosis rates between age groups over time. Conversely, among males, the diagnosis rates differs drastically by age groupp. The 20-29 age group has the highest HIV diagnosis rates over time.Individuals within the 60+ age group has the lowest HIV diagnosis rates over time. On a whole, for the age groups 20-29, 30-39, and 40-49, there appears to be a decrease in HIV diagnosis rates. Tor the remaining age groups, the trend appears to remain constant at the year 2015.</p>
+<p><img src="Final_Report_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>In Figure 4, the data was first filtered to obtain rows that only contained values for gender and age. Then, HIV diagnosis rates over time was plotted as a line graph, grouped by age groups and colored accordingly. To see if the rate distribution among age groups differed by gender, the plot was faceted by gender as well. Similar to the observations made in Figure 3, males have disproportionately higher HIV diagnosis rates compared to females. In Figure 4, however, within females, there appears to be a relatively similar distribution of HIV diagnosis rates among age groups over time. Conversely, among males, the diagnosis rates differs drastically by age groupp. The 20-29 age group has the highest HIV diagnosis rates over time.Individuals within the 60+ age group has the lowest HIV diagnosis rates over time. On a whole, for the age groups 20-29, 30-39, and 40-49, there appears to be a decrease in HIV diagnosis rates. For the remaining age groups, the trend appears to remain constant at the year 2015.</p>
 <p><strong>Additional Statistical Analysis</strong></p>
 <p>Our exploratory data visualizations indicated that there are strong disparities in HIV Infection Rates amongst the five boroughs, various age groups and genders. As a result, we decided to fit a multiple linear regression model to compute parameter estimates and to see whether these disparities are statistically significant at the 5% level of significance.</p>
 <pre class="r"><code>hiv_clean = hiv_data %&gt;% 
