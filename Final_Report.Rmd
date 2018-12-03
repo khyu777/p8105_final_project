@@ -62,13 +62,18 @@ Report contains eighteen variables, including year, age, race, HIV diagnoses,
 deaths, and percent viral suppression and percent linked to care. The variable
 outcomes used within the visualizations are defined as followed:
 
+* Death rate types = 
+
+* HIV diagnosis rate = "HIV diagnoses per 100,000 NYC population using annual
+intercensal population estimates"
+
+* Percent viral suppression = "Proportion of people living with diagnosed HIV
+infection 13 years of age or older with at least one viral load test during the
+calendar year whose last HIV viral load value was ≤200 copies/mL."
 
 
+###**Exploratory analysis**
 
-
-**Exploratory analysis**
-
-: Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
 
 **Big Picture Visualizations**
 
@@ -97,6 +102,7 @@ ggplot(stacked_death_plot, aes(x = year, y = death_rate_nums, group = death_rate
     y = "Rate",
     Caption = "Figure 1. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report"  )
 ```
+  
   Data was first filtered so that the resulting data frame included only
 observations that aggregated results across all boroughs, UHFs, genders, ages, 
 and races. This data frame was then tidied so that death rate type (i.e.
@@ -204,8 +210,8 @@ distinction being made in all races, though not as wide. In Black males and
 females, there is a decrease in IV diagnosis rates over time. There is also a 
 slight decrease in the Latino/Hispanic population in females, but an increase in 
 the males. Furthermore, while there is a decrease in HIV diagnosis rates within 
-males of the White and Asian/Pacific Islander races, in females, there appears to 
-be no linear change over time.
+males of the White and Asian/Pacific Islander racial groups, in females, there
+appears to be no linear change over time.
 
 ```{r}
 split_by_race = hiv_data %>% 
@@ -245,8 +251,8 @@ for each race over time. These results are strongly correlated with Figure 1, wh
 shows HIV-related deaths have decreased over time. Over all, it appears that Whites
 have the largest percent viral suppression compared to all races. 
   
-  When faced by gender, White males have the highest percent viral suppression over
-time. Contrastingly, Black males have the lowest percent viral suppression, 
+  When faceted by gender, White males have the highest percent viral suppression
+over time. Contrastingly, Black males have the lowest percent viral suppression, 
 although the total percentage has increased over time. Furthermore, Black females
 have higher suppression compared to their male counterparts. These results
 correspond to the results observed in Figure 3. When looking at females, Whites 
@@ -279,6 +285,7 @@ values for gender and age. Then, HIV diagnosis rates over time was plotted as a
 line graph, grouped by age groups and colored accordingly. To see if the rate
 distribution among age groups differed by gender, the plot was faceted by gender 
 as well.
+
   Similar to the observations made in Figure 3, males have disproportionately
 higher HIV diagnosis rates compared to females. In Figure 4, however, within 
 females, there appears to be a relatively similar distribution of HIV diagnosis
