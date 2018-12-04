@@ -2,6 +2,7 @@
 title: "Data Science I: Final Report"
 date: "December 6th, 2018"
 output: github_document
+ 
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -90,20 +91,20 @@ hiv_year_data = hiv_data %>%
     race == "All"
   )
 
-all_death_rates = hiv_year_data %>% 
-  gather(key = death_rate_type, value = death_rate_nums, death_rate:non_hiv_related_death_rate) %>% 
-  filter(death_rate_nums != 99999)
+stacked_death_plot = hiv_year_data %>% 
+  filter(non_hiv_related_death_rate != 99999,
+         hiv_related_death_rate != 99999) 
 
-stacked_death_plot = all_death_rates %>% 
-  filter(death_rate_type != "death_rate")
-
-ggplot(stacked_death_plot, aes(x = year, y = death_rate_nums, group = death_rate_type)) +   
-  geom_col(aes(fill = death_rate_type)) +
-  labs(
-    title = "Death Rate Types Over the Years",
-    x = "Year",
-    y = "Rate",
-    Caption = "Figure 1. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report"  )
+stacked_death_plot %>% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type = 'bar', name = 'Non HIV-related death rate') %>%
+  add_trace(y = ~hiv_related_death_rate, name = 'HIV-related death rate') %>%
+  layout(title = "Figure 1. Death Rate Types over the Years", 
+         annotations = list(text = 'Figure 1',
+                            font = list(size = 12),
+                            showarrow = FALSE,
+                            xref = 'paper', x = 0,
+                            yref = 'paper', y = -0.3),
+         yaxis = list(title = 'Rate'), 
+         barmode = 'stack')
 ```
   
   Data was first filtered so that the resulting data frame included only
@@ -124,7 +125,6 @@ years. Furthermore, there are more non-HIV-related deaths over the years.
 Interestingly, however, these deaths are also decreasing over time. 
 
 ```{r warning = FALSE}
-# Developing the code to visually assess HIV diagnosis rates over time by borough
 
 HIV_diagnosis_data = hiv_data%>%
                janitor::clean_names()%>%
@@ -132,8 +132,6 @@ HIV_diagnosis_data = hiv_data%>%
                filter(borough != "All")%>%
                filter(gender == "All")%>%
                filter(age == "All")
-
-# Creating a plot to visually assess the above dataframe.
 
 
 spread_boros = HIV_diagnosis_data %>% 
@@ -146,20 +144,9 @@ spread_boros %>% plot_ly(x = ~year, y = ~manhattan, type = 'bar', name =
   add_trace(y = ~brooklyn, name = 'Brooklyn') %>%
   add_trace(y = ~queens, name = 'Queens') %>%
   add_trace(y = ~staten_island, name = 'Staten Island') %>%
-  layout(title = "HIV Diagnosis Rate by Borough over Time",
+  layout(title = "Figure 2. HIV Diagnosis Rate by Borough over Time",
          yaxis = list(title = 'HIV Diagnosis Rate'), 
          barmode = 'group')
-
-HIV_diagnosis_data%>%
-            ggplot(aes(x = year, y = hiv_diagnosis_rate, group = borough, 
-                       color = borough))+geom_point() + geom_line() +
-  labs(
-    title = "HIV Diagnosis Rate by Borough Over time",
-    x = "Year",
-    y = "HIV Diagnosis Rates",
-    caption = "Figure 2. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report"
-  )
-
 ```
 
    In Figure 2, The original dataset was filtered down to get the summary data by
@@ -406,6 +393,7 @@ flat trend. No groups demonstrate an increasing rate overall.
 
 
 **Conclusion**
+
 The overall burden caused by HIV/AIDS in New York City has been reduced over the
 years. This is seen in the improving health outcomes of HIV/AIDS city-wide, as well
 as in the declining numbers of new infections amongst the most impacted geographic areas.
@@ -417,5 +405,6 @@ of continuing intervention efforts.
 While certain groups face high rates of HIV and lower viral suppression,
 particularly men of color and men aged 20-39, compared to their peers, these
 outcomes are improving over time.
+
 
 **Data Can Be Found Here**
