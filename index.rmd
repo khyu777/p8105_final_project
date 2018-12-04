@@ -1,13 +1,12 @@
 ---
 title: "Identification of trends and disparities in HIV/AIDS for NYC"
-output: 
-  html_document:
-    toc: TRUE
-    toc_float: TRUE
+output: html_document
 ---
 
 Bryce Wong (baw2160), Sunny Siddique (as5457), David Yu (ky2288), Noah Kreski (Ntk2109), Briana Lettsome (Bjl2150)
 
-### Overview / Screencast?
+### Overview
 
-This project is motivated by Governor Cuomo’s initiative for ending the AIDS epidemic in New York State by 2020 (ETE 2020). In line with the plan’s goals, we aim to identify key vulnerable populations in New York City (NYC) disproportionately burdened by HIV/AIDS in order to improve interventions implemented under this initiative. To that end, we plan to utilize annual HIV/AIDS reports from NYC through the NYC Open Data database, as well as supplementary NYC geographic information. Our analyses will focus on exploring potential health disparities across geographic and sociodemographic variables. Understanding the current trends for HIV/AIDS across time and in relation to comorbidities will be another relevant focus of our investigation in order to understand the current state and effectiveness of HIV/AIDS interventions in NYC.
+This project is motivated by Governor Cuomo’s initiative for ending the AIDS epidemic in New York State by 2020 (ETE 2020). In line with the plan’s goals, we aim to identify key vulnerable populations in New York City (NYC) disproportionately burdened by HIV/AIDS in order to improve interventions implemented under this initiative. To that end, we utilize annual HIV/AIDS reports from NYC through the NYC Open Data database, as well as supplementary NYC geographic information. Our analyses focus on exploring potential health disparities across geographic and sociodemographic variables as well as understanding the current trends for HIV/AIDS across time and in relation to comorbidities, in order to understand the current state and effectiveness of HIV/AIDS interventions in NYC.
+
+### Screencast
