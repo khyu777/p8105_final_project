@@ -59,9 +59,7 @@ few years? If so, do the trends appear comparable to the DOHMH interventions
 following Governor Cuomo's announcements in 2014?
 
 
-**Methods**
-
-Data: Source, scraping method, cleaning, etc.
+**Data**
 
   The data that was utilized for this project was the New York City Department of
 Health and Mental Hygeine (NYCDHMH) HIV/AIDS Surveillance Annual Report. This
@@ -69,14 +67,18 @@ dataset is contains HIV/AIDS-related data on individuals thirteen years or older
 in all NYC boroughs as well as throughou the city (DOHMH HIV/AIDS Annual Report).
 The dataset was downloaded from NYCOpen Data, an open website that provides
 information and data to New Yorkers by the NYC government. Once downloaded, the 
-raw data was imported into Rstudio as a csv file. 
+raw data was imported into Rstudio as a csv file.
+
   Within this particular data there are The data contained within the dataset were
 collected between the years 2011 through 2016. The HIV/AIDS surveillance Annual
 Report contains eighteen variables, including year, age, race, HIV diagnoses,
 deaths, and percent viral suppression and percent linked to care. The variable
 outcomes used within the visualizations are defined as followed:
 
-* Death rate types = 
+* Non-HIV-related death rate =Number of deaths attributed to other causes per 1,000
+people mid-year living with HIV/AIDS 
+
+* HIV-related death rate = Number of deaths attributed to HIV/AIDS per 1,000 people mid-year living with HIV/AIDS 
 
 * HIV diagnosis rate = "HIV diagnoses per 100,000 NYC population using annual
 intercensal population estimates"
@@ -150,7 +152,8 @@ spread_boros = HIV_diagnosis_data %>%
   spread(key = borough, value = hiv_diagnosis_rate) %>% 
   janitor::clean_names()
 
-spread_boros %>% plot_ly(x = ~year, y = ~manhattan, type = 'bar', name = 'Manhattan') %>%
+spread_boros %>% plot_ly(x = ~year, y = ~manhattan, type = 'bar', name =
+                           'Manhattan') %>%
   add_trace(y = ~bronx, name = 'Bronx') %>%
   add_trace(y = ~brooklyn, name = 'Brooklyn') %>%
   add_trace(y = ~queens, name = 'Queens') %>%
@@ -341,10 +344,76 @@ linear_clean %>%
 
 Notable results from our multiple linear regression analysis include:
 
-* Each borough has a statistically significantly different mean infection rate from Manhattan (p<0.01), adjusting for gender and age group. In particular, on average, the Bronx has a 0.330 percentage point higher HIV infection rate compared to Manhattan, adjusting for gender and age group. All other boroughs (Brooklyn, Bronx and Staten Island) have a statistically significant lower infection rate compared to Manhattan (p<0.01).
+* Compared to Manhattan, all boroughs have a statistically significantly different HIV infection rate (p<0.01), adjusting for gender and age group. In particular, on average, the Bronx has a 0.330 percentage point higher HIV infection rate compared to Manhattan, adjusting for gender and age group. 
 * On average, males have a 38.9 percentage point higher HIV infection rate compared to females, adjusting for borough and age group.
 * On average, compared to 13-19 year olds, 20-29 year olds have a 42.6 percentage point higher HIV infection rate (p<0.01), adjusting for gender and borough. With age, the mean difference in HIV infection rate appears to decrease, adjusting for gender and borough. 
 
 **Discussion**
+
+*Big Picture Analysis*
+
+There is a downward trend in the total number of deaths per 1,000 people living 
+with HIV/AIDS in New York City over the years. When further exploring the breakdown
+of causes of death within this overall death rate, it is revealed that the driving
+component for this reduction in total death rate is the decrease in number of deaths
+attributed to HIV/AIDS. By contrast, the number of deaths attributed to other causes
+has remained relatively consistent across the years. This reflects achievements in
+improving the extent that HIV/AIDS has been fatal for New York City residents living
+with HIV/AIDS.
+
+HIV diagnoses are not equally distributed between boroughs. Across the years,
+Manhattan has consistently seen the highest rate of HIV diagnoses per 100,000
+residents, followed by the Bronx, then Brooklyn, then Queens, and finally Staten
+Island. Of note, however, are the downwards trends in diagnosis rate for all three
+of the most disproportionately-impacted boroughs. Meanwhile, rates in diagnosis 
+have remained relatively stable within Queens and Staten Island.
+
+While the relative ranking in diagnosis rate has also remained generally consistent
+from 2011-2015 (e.g., Manhattan is usually the borough with the highest level of HIV
+diagnoses), 2015 saw Manhattan diagnosing fewer cases of HIV than the Bronx for the
+first time. This, along with dropping rates for Bronx and Brooklyn, imply
+improvements amongst these three heavily-burdened areas. Unfortunately, the lack of
+improvement amongst the remaining boroughs might reveal gaps in progress for 
+certain geographic areas
+
+*Subgroup Analysis*
+HIV diagnosis rates are consistently higher for men compared to women, and for 
+Black and Latino/Hispanic individuals compared to other racial and ethnic groups.
+While these disparities exist, the overal trends for this outcome of HIV diagnosis
+rate indicate improvement, with general decreases among many groups, including the
+Black and Latino/Hispanic groups who face the highest rates. For Black men, as an
+example, the rate of HIV diagnosis plummeted across these few years from 150 per
+100,000 to just over 100 per 100,000.
+
+The clear positive finding with this visualization is that viral suppression is
+increasing among all groups, with the exception of women in the “Other/Unknown”
+racial category who saw no change overall. While suppression proportions are similar
+between men and women, it appears that differences exist between racial/ethnic
+categories. Certain groups with higher rates of HIV diagnosis, such as Black men,
+can also be seen here with lower rates of viral suppression. Therefore,
+comprehensive measures should address the factors that lead to infection for
+vulnerable populations, while also ensuring equitable care and treatment for
+individuals who are already HIV-Positive.
+
+While there do not seem to be strong age-based disparities in HIV diagnosis rate
+among women, with the four central age categories essentially overlapped, men see
+strong differences, with 20-29 year olds facing the highest rates, followed by 30-39
+year olds. Still, the rates among these more vulnerable populations are decreasing
+over time, and most other groups exhibit either a decrease in diagnosis rate or a
+flat trend. No groups demonstrate an increasing rate overall.
+
+
+** Conclusion**
+The overall burden caused by HIV/AIDS in New York City has been reduced over the
+years. This is seen in the improving health outcomes of HIV/AIDS city-wide, as well
+as in the declining numbers of new infections amongst the most impacted geographic areas.
+
+Unfortunately, there appears to be evidence of fewer increases in progress amongst
+less impacted regions. This demonstrates the need to reassess the aims and targets
+of continuing intervention efforts.
+
+While certain groups face high rates of HIV and lower viral suppression,
+particularly men of color and men aged 20-39, compared to their peers, these
+outcomes are improving over time.
 
 **Data Can Be Found Here**
