@@ -84,7 +84,7 @@ There is a downward trend in the total number of deaths per 1,000 people living 
 
 ###HIV Diagnosis Rates by Borough
 
-In addressing how to further direct HIV/AIDS efforts in New York City, it is particularly useful to be able to identify how the impact of HIV is distributed across the city's geographic regions. Taking a look at how this distribution has changed over time may also serve to highlight where additional attention and resources need to be allocated.   
+In addressing how to further direct HIV/AIDS efforts in New York City, it is particularly useful to be able to identify how the impact of HIV is distributed across the city's geographic regions. Taking a look at how this distribution has changed over time may also serve to highlight disparities, and thus where additional attention and resources need to be allocated.   
 
 In the bar graph below, we assess the number of HIV diagnoses per 100,000 NYC residents within each borough, between the years 2011 and 2015.
 
