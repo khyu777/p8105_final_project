@@ -6,7 +6,7 @@ output:
     toc_float: TRUE
 ---
 
-###Introduction - should we do plotly?
+###Introduction
 
 In the continued fight against HIV/AIDS, New York City is instrumental in upholding the New York state plan to ends the AIDS epidemic by 2020. To guide this progress, we must be able to understand both the level of burden and the improvements made over time.
 
@@ -46,34 +46,13 @@ hiv_year_data = hiv_data %>%
     race == "All"
   )
 
-#Mapping all outcome variables on the same graph.
+#Making a stacked bar graph in plot.ly
 
-#First gathering several outcome variables of interest into one outcome variable:
-
-all_death_rates = hiv_year_data %>% 
-  gather(key = death_rate_type, value = death_rate_nums, death_rate:non_hiv_related_death_rate) %>% 
-  filter(death_rate_nums != 99999)
-
-#Making a stacked bar graph.
-
-stacked_death_plot = all_death_rates %>% 
-  filter(death_rate_type != "death_rate")
-
-ggplot(stacked_death_plot, aes(x = year, y = death_rate_nums, group = death_rate_type)) +   
-  geom_col(aes(fill = death_rate_type)) +
-  labs(
-    title = "Death rates types over the years",
-    x = "Year",
-    y = "Rate"
-  )
-
-#Making the same chart in plot.ly
-
-filter_deaths = hiv_year_data %>% 
+stacked_death_plot = hiv_year_data %>% 
   filter(non_hiv_related_death_rate != 99999,
          hiv_related_death_rate != 99999) 
 
-filter_deaths %>% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type = 'bar', name = 'Non HIV-related death rate') %>%
+stacked_death_plot %>% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type = 'bar', name = 'Non HIV-related death rate') %>%
   add_trace(y = ~hiv_related_death_rate, name = 'HIV-related death rate') %>%
   layout(title = "Death Rate Types over the Years", 
          yaxis = list(title = 'Rate'), 
@@ -99,14 +78,7 @@ HIV_diagnosis_data = hiv_data %>%
   filter(gender == "All") %>%
   filter(age == "All")
 
-#Plotting a bar graph looking at diagnoses rate each year for each borough
-
-HIV_diagnosis_data %>%
-  ggplot( aes(fill = reorder(borough, -hiv_diagnosis_rate), y = hiv_diagnosis_rate, x = year)) +
-  geom_bar(position = "dodge", stat = "identity") + 
-  labs(title = "HIV Diagnosis Rate by Borough over Time", y = "HIV Diagnosis Rate", x = "Year", fill = "Borough")
-
-#Creating the same plot in plot.ly
+#Plotting a bar graph (in plot.ly) looking at diagnoses rate each year for each borough
 
 spread_boros = HIV_diagnosis_data %>% 
   spread(key = borough, value = hiv_diagnosis_rate) %>% 
