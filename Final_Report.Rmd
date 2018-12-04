@@ -8,6 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(ggridges)
+library(plotly)
 
 hiv_data = read_csv(file = "./data/DOHMH_HIV_AIDS_Annual_Report.csv") %>%
   janitor::clean_names()
@@ -122,7 +123,7 @@ stacked bar graph, there is a decreasing trend in HIV-related death types over t
 years. Furthermore, there are more non-HIV-related deaths over the years.
 Interestingly, however, these deaths are also decreasing over time. 
 
-```{r}
+```{r warning = FALSE}
 # Developing the code to visually assess HIV diagnosis rates over time by borough
 
 HIV_diagnosis_data = hiv_data%>%
@@ -134,7 +135,7 @@ HIV_diagnosis_data = hiv_data%>%
 
 # Creating a plot to visually assess the above dataframe.
 
-<<<<<<< HEAD
+
 spread_boros = HIV_diagnosis_data %>% 
   spread(key = borough, value = hiv_diagnosis_rate) %>% 
   janitor::clean_names()
@@ -148,7 +149,7 @@ spread_boros %>% plot_ly(x = ~year, y = ~manhattan, type = 'bar', name =
   layout(title = "HIV Diagnosis Rate by Borough over Time",
          yaxis = list(title = 'HIV Diagnosis Rate'), 
          barmode = 'group')
-=======
+
 HIV_diagnosis_data%>%
             ggplot(aes(x = year, y = hiv_diagnosis_rate, group = borough, 
                        color = borough))+geom_point() + geom_line() +
@@ -158,7 +159,7 @@ HIV_diagnosis_data%>%
     y = "HIV Diagnosis Rates",
     caption = "Figure 2. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report"
   )
->>>>>>> e97fe904be1306c22294a0bc37ff25e6d0b913b3
+
 ```
 
    In Figure 2, The original dataset was filtered down to get the summary data by
@@ -374,7 +375,10 @@ improvements amongst these three heavily-burdened areas. Unfortunately, the lack
 improvement amongst the remaining boroughs might reveal gaps in progress for 
 certain geographic areas
 
+
 *Subgroup Analysis*
+
+
 HIV diagnosis rates are consistently higher for men compared to women, and for 
 Black and Latino/Hispanic individuals compared to other racial and ethnic groups.
 While these disparities exist, the overal trends for this outcome of HIV diagnosis
@@ -401,7 +405,7 @@ over time, and most other groups exhibit either a decrease in diagnosis rate or 
 flat trend. No groups demonstrate an increasing rate overall.
 
 
-** Conclusion**
+**Conclusion**
 The overall burden caused by HIV/AIDS in New York City has been reduced over the
 years. This is seen in the improving health outcomes of HIV/AIDS city-wide, as well
 as in the declining numbers of new infections amongst the most impacted geographic areas.
