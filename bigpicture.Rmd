@@ -16,7 +16,7 @@ This page is dedicated to visualizations that highlight big picture analyses  of
 #Loading libraries:
 
 library(tidyverse)
-library(patchwork)
+library(plotly)
 
 theme_set(theme_bw() + theme(legend.position = "bottom"))
 
@@ -66,6 +66,18 @@ ggplot(stacked_death_plot, aes(x = year, y = death_rate_nums, group = death_rate
     x = "Year",
     y = "Rate"
   )
+
+#Making the same chart in plot.ly
+
+filter_deaths = hiv_year_data %>% 
+  filter(non_hiv_related_death_rate != 99999,
+         hiv_related_death_rate != 99999) 
+
+filter_deaths %>% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type = 'bar', name = 'Non HIV-related death rate') %>%
+  add_trace(y = ~hiv_related_death_rate, name = 'HIV-related death rate') %>%
+  layout(title = "Death Rate Types over the Years", 
+         yaxis = list(title = 'Rate'), 
+         barmode = 'stack')
 ```
 
 There is a downward trend in the total number of deaths per 1,000 people living with HIV/AIDS in New York City over the years. When further exploring the breakdown of causes of death within this overall death rate, it is revealed that the driving component for this reduction in total death rate is the decrease in number of deaths attributed to HIV/AIDS. By contrast, the number of deaths attributed to other causes has remained relatively consistent across the years. This reflects achievements in improving the extent that HIV/AIDS has been fatal for New York City residents living with HIV/AIDS. 
@@ -93,6 +105,21 @@ HIV_diagnosis_data %>%
   ggplot( aes(fill = reorder(borough, -hiv_diagnosis_rate), y = hiv_diagnosis_rate, x = year)) +
   geom_bar(position = "dodge", stat = "identity") + 
   labs(title = "HIV Diagnosis Rate by Borough over Time", y = "HIV Diagnosis Rate", x = "Year", fill = "Borough")
+
+#Creating the same plot in plot.ly
+
+spread_boros = HIV_diagnosis_data %>% 
+  spread(key = borough, value = hiv_diagnosis_rate) %>% 
+  janitor::clean_names()
+
+spread_boros %>% plot_ly(x = ~year, y = ~manhattan, type = 'bar', name = 'Manhattan') %>%
+  add_trace(y = ~bronx, name = 'Bronx') %>%
+  add_trace(y = ~brooklyn, name = 'Brooklyn') %>%
+  add_trace(y = ~queens, name = 'Queens') %>%
+  add_trace(y = ~staten_island, name = 'Staten Island') %>%
+  layout(title = "HIV Diagnosis Rate by Borough over Time",
+         yaxis = list(title = 'HIV Diagnosis Rate'), 
+         barmode = 'group')
 ```
 
 HIV diagnoses are not equally distributed between boroughs. Across the years, Manhattan has consistently seen the highest rate of HIV diagnoses per 100,000 residents, followed by the Bronx, then Brooklyn, then Queens, and finally Staten Island. Of note, however, are the downwards trends in diagnosis rate for all three of the most disproportionately-impacted boroughs. Meanwhile, rates in diagnosis have remained relatively stable within Queens and Staten Island. 
