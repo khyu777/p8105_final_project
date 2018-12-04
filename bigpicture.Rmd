@@ -30,7 +30,7 @@ hiv_data = read_csv("./data/DOHMH_HIV_AIDS_Annual_Report.csv") %>%
 
 How much HIV-related causes contribute to the overall death rate for people living with HIV in New York City over the years can illustrate how the combined effects of implemented interventions, policies, and strategies have altered the impact of HIV.
 
-The following stacked bar graph highlights the extent to which deaths related to HIV/AIDS contribute to the overall number of deaths per 1,000 people, mid-year, living with HIV/AIDS. Changes in the contribution of HIV-related deaths are shown from the years 2011 to 2015.
+The following stacked bar graph highlights the extent to which deaths related to HIV/AIDS contribute to the overall number of deaths per 1,000 people, mid-year, living with HIV/AIDS. Changes in the contribution of HIV-related deaths are shown from the years 2011 to 2014.
 
 ```{r death rates by type, echo = FALSE, message=FALSE, warning=FALSE}
 #Original code by Bryce, further edited by Bryce
