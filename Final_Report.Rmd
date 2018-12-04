@@ -8,6 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(ggridges)
+library(plotly)
 
 hiv_data = read_csv(file = "./data/DOHMH_HIV_AIDS_Annual_Report.csv") %>%
   janitor::clean_names()
@@ -28,21 +29,34 @@ Identification And Analysis of Trends And Disparities In HIV/AIDS For NYC
 
 **Motivation / Related Work**
 
-According to the the past decade or so, improvements in drug therapies and prevention intervations have led to a decreased number of AIDS cases. In June, 2014, New York Governor Andrew Cuomo announced a new strategy designed to "End the Epidemic" in the state through a combination of increased HIV screening and testing, promotion of Pre-exposure Prophylaxis (PrEP) and improved linkage and retention in clinical care for HIV-positive persons. Since then, the New York City Department of Health and Mental Hygiene (DOHMH) reported a decline in new infections of nearly 8 percent annually or approximately 15% since the campaign was launched.
+According to the the past decade or so, improvements in drug therapies and
+prevention intervations have led to a decreased number of AIDS cases. In June, 2014,
+New York Governor Andrew Cuomo announced a new strategy designed to "End the
+Epidemic" in the state through a combination of increased HIV screening and testing,
+promotion of Pre-exposure Prophylaxis (PrEP) and improved linkage and retention in
+clinical care for HIV-positive persons. Since then, the New York City Department of
+Health and Mental Hygiene (DOHMH) reported a decline in new infections of nearly 8
+percent annually or approximately 15% since the campaign was launched.
 
 Despite efforts to reduce the number of new infections, the HIV Surveillance Annual Report presented a number of key points that motivated our decision to analyze HIV infections data. Amongst them, the most noteworthy are:
 
-* Poor New Yorkers, as well as African-American and Hispanic New Yorkers, bear a disproportionate burden of illness and premature death.
+* Poor New Yorkers, as well as African-American and Hispanic New Yorkers, bear a
+disproportionate burden of illness and premature death.
 * Poor health is concentrated in certain New York City neighborhoods.
 * Factors associated with poor health, such as poor access to medical care, unhealthy behaviors, and poor living conditions, are more common among certain economic and racial/ethnic groups.
 
 **Initial Questions**
 
-* Are there disparities in HIV infections / diagnoses based on NYC neighborhoods, if so, which neighborhoods have the highest incidence of HIV infections? Which neighborhoods have the lowest incidence?
-* Are there disparities in common demographic factors, including age, gender and race? 
-* Does HIV related death rate appear elevated for certain social groups? What about non-HIV related deaths?
-* Are there specific observable trends in "percent viral suppression" over the past few years? If so, do the trends appear comparable to the DOHMH interventions following Governor Cuomo's announcements in 2014?
-
+* Are there disparities in HIV infections / diagnoses based on NYC neighborhoods, if
+so, which neighborhoods have the highest incidence of HIV infections? Which
+neighborhoods have the lowest incidence?
+* Are there disparities in common demographic factors, including age, gender and
+race? 
+* Does HIV related death rate appear elevated for certain social groups? What about
+non-HIV related deaths?
+* Are there specific observable trends in "percent viral suppression" over the past
+few years? If so, do the trends appear comparable to the DOHMH interventions
+following Governor Cuomo's announcements in 2014?
 
 
 **Methods**
@@ -132,15 +146,18 @@ HIV_diagnosis_data = hiv_data%>%
 
 # Creating a plot to visually assess the above dataframe.
 
-HIV_diagnosis_data%>%
-            ggplot(aes(x = year, y = hiv_diagnosis_rate, group = borough, 
-                       color = borough))+geom_point() + geom_line() +
-  labs(
-    title = "HIV Diagnosis Rate by Borough Over time",
-    x = "Year",
-    y = "HIV Diagnosis Rates",
-    caption = "Figure 2. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report"
-  )
+spread_boros = HIV_diagnosis_data %>% 
+  spread(key = borough, value = hiv_diagnosis_rate) %>% 
+  janitor::clean_names()
+
+spread_boros %>% plot_ly(x = ~year, y = ~manhattan, type = 'bar', name = 'Manhattan') %>%
+  add_trace(y = ~bronx, name = 'Bronx') %>%
+  add_trace(y = ~brooklyn, name = 'Brooklyn') %>%
+  add_trace(y = ~queens, name = 'Queens') %>%
+  add_trace(y = ~staten_island, name = 'Staten Island') %>%
+  layout(title = "HIV Diagnosis Rate by Borough over Time",
+         yaxis = list(title = 'HIV Diagnosis Rate'), 
+         barmode = 'group')
 ```
 
    In Figure 2, The original dataset was filtered down to get the summary data by
