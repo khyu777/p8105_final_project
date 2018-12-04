@@ -98,11 +98,13 @@ stacked_death_plot = hiv_year_data %>%
 stacked_death_plot %>% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type = 'bar', name = 'Non HIV-related death rate') %>%
   add_trace(y = ~hiv_related_death_rate, name = 'HIV-related death rate') %>%
   layout(title = "Figure 1. Death Rate Types over the Years", 
-         annotations = list(text = 'Figure 1',
+         annotations = list(x = 1, y = -0.1, 
+                            text = 'Figure 1',
                             font = list(size = 12),
                             showarrow = FALSE,
-                            xref = 'paper', x = 0,
-                            yref = 'paper', y = -0.3),
+                            xref = 'paper', xanchor = 'right',
+                            yref = 'paper', yanchor = 'auto',
+                            xshift = 0, yshift = 0),
          yaxis = list(title = 'Rate'), 
          barmode = 'stack')
 ```
