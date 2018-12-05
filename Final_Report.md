@@ -97,7 +97,8 @@ ggplot(stacked_death_plot, aes(x = year, y = death_rate_nums, group = death_rate
   labs(
     title = "Death Rates Types over the Years",
     x = "Year",
-    y = "Rate"
+    y = "Rate",
+    caption = "Figure 1"
   )
 ```
 
@@ -149,7 +150,8 @@ HIV_diagnosis_data %>%
   ggplot(aes(x = year, y = hiv_diagnosis_rate)) +
   geom_bar(aes(fill = borough), position = "dodge", stat = "identity") +
   labs(title = "HIV Diagnosis Rate by Borough over Time",
-       y = "HIV Diagnosis Rate")
+       y = "HIV Diagnosis Rate",
+       caption = "Figure 2")
 ```
 
 ![](Final_Report_files/figure-html/unnamed-chunk-2-1.png)<!-- -->

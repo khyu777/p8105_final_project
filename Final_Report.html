@@ -269,7 +269,8 @@ ggplot(stacked_death_plot, aes(x = year, y = death_rate_nums, group = death_rate
   labs(
     title = &quot;Death Rates Types over the Years&quot;,
     x = &quot;Year&quot;,
-    y = &quot;Rate&quot;
+    y = &quot;Rate&quot;,
+    caption = &quot;Figure 1&quot;
   )</code></pre>
 <p><img src="Final_Report_files/figure-html/unnamed-chunk-1-1.png" /><!-- --></p>
 <pre class="r"><code>#stacked_death_plot %&gt;% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type = &#39;bar&#39;, name = &#39;Non HIV-related death rate&#39;) %&gt;%
@@ -301,7 +302,8 @@ HIV_diagnosis_data %&gt;%
   ggplot(aes(x = year, y = hiv_diagnosis_rate)) +
   geom_bar(aes(fill = borough), position = &quot;dodge&quot;, stat = &quot;identity&quot;) +
   labs(title = &quot;HIV Diagnosis Rate by Borough over Time&quot;,
-       y = &quot;HIV Diagnosis Rate&quot;)</code></pre>
+       y = &quot;HIV Diagnosis Rate&quot;,
+       caption = &quot;Figure 2&quot;)</code></pre>
 <p><img src="Final_Report_files/figure-html/unnamed-chunk-2-1.png" /><!-- --></p>
 <pre class="r"><code>#spread_boros %&gt;% plot_ly(x = ~year, y = ~manhattan, type = &#39;bar&#39;, name = &#39;Manhattan&#39;) %&gt;%
 #  add_trace(y = ~bronx, name = &#39;Bronx&#39;) %&gt;%
