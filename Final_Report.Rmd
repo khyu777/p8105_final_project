@@ -96,21 +96,30 @@ hiv_year_data = hiv_data %>%
   )
 
 stacked_death_plot = hiv_year_data %>% 
-  filter(non_hiv_related_death_rate != 99999,
-         hiv_related_death_rate != 99999) 
+  gather(key = death_rate_type, value = death_rate_nums, death_rate:non_hiv_related_death_rate) %>% 
+  filter(death_rate_nums != 99999,
+         death_rate_type != "death_rate") 
 
-stacked_death_plot %>% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type = 'bar', name = 'Non HIV-related death rate') %>%
-  add_trace(y = ~hiv_related_death_rate, name = 'HIV-related death rate') %>%
-  layout(title = "Death Rate Types over the Years", 
-         annotations = list(x = 1, y = -0.1, 
-                            text = 'Figure 1',
-                            font = list(size = 12),
-                            showarrow = FALSE,
-                            xref = 'paper', xanchor = 'right',
-                            yref = 'paper', yanchor = 'auto',
-                            xshift = 0, yshift = 0),
-         yaxis = list(title = 'Rate'), 
-         barmode = 'stack')
+ggplot(stacked_death_plot, aes(x = year, y = death_rate_nums, group = death_rate_type)) +   
+  geom_col(aes(fill = death_rate_type)) +
+  labs(
+    title = "Death Rates Types over the Years",
+    x = "Year",
+    y = "Rate"
+  )
+
+#stacked_death_plot %>% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type = 'bar', name = 'Non HIV-related death rate') %>%
+#  add_trace(y = ~hiv_related_death_rate, name = 'HIV-related death rate') %>%
+#  layout(title = "Death Rate Types over the Years", 
+#         annotations = list(x = 1, y = -0.1, 
+#                            text = 'Figure 1',
+#                            font = list(size = 12),
+#                            showarrow = FALSE,
+#                            xref = 'paper', xanchor = 'right',
+#                            yref = 'paper', yanchor = 'auto',
+#                            xshift = 0, yshift = 0),
+#         yaxis = list(title = 'Rate'), 
+#         barmode = 'stack')
 ```
   
    Data was first filtered so that the resulting data frame included only
@@ -138,14 +147,21 @@ spread_boros = HIV_diagnosis_data %>%
   spread(key = borough, value = hiv_diagnosis_rate) %>% 
   janitor::clean_names()
 
-spread_boros %>% plot_ly(x = ~year, y = ~manhattan, type = 'bar', name = 'Manhattan') %>%
-  add_trace(y = ~bronx, name = 'Bronx') %>%
-  add_trace(y = ~brooklyn, name = 'Brooklyn') %>%
-  add_trace(y = ~queens, name = 'Queens') %>%
-  add_trace(y = ~staten_island, name = 'Staten Island') %>%
-  layout(title = "HIV Diagnosis Rate by Borough over Time",
-         yaxis = list(title = 'HIV Diagnosis Rate'), 
-         barmode = 'group')
+HIV_diagnosis_data %>% 
+  mutate(borough = factor(borough, levels = c("Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island"))) %>% 
+  ggplot(aes(x = year, y = hiv_diagnosis_rate)) +
+  geom_bar(aes(fill = borough), position = "dodge", stat = "identity") +
+  labs(title = "HIV Diagnosis Rate by Borough over Time",
+       y = "HIV Diagnosis Rate")
+
+#spread_boros %>% plot_ly(x = ~year, y = ~manhattan, type = 'bar', name = 'Manhattan') %>%
+#  add_trace(y = ~bronx, name = 'Bronx') %>%
+#  add_trace(y = ~brooklyn, name = 'Brooklyn') %>%
+#  add_trace(y = ~queens, name = 'Queens') %>%
+#  add_trace(y = ~staten_island, name = 'Staten Island') %>%
+#  layout(title = "HIV Diagnosis Rate by Borough over Time",
+#         yaxis = list(title = 'HIV Diagnosis Rate'), 
+#         barmode = 'group')
 ```
 
    In Figure 2, The original dataset was filtered down to get the summary data by
