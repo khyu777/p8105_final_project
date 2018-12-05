@@ -80,7 +80,7 @@ calendar year whose last HIV viral load value was ≤200 copies/mL".
 
                             
 
-###**Exploratory analysis**
+**Exploratory analysis**
 
 
 **Big Picture Visualizations**
@@ -128,35 +128,24 @@ over time. Furthermore, the non-HIV related death rates appear to be relatively
 constant.
 
 ```{r warning = FALSE}
-
-HIV_diagnosis_data = hiv_data%>%
-               janitor::clean_names()%>%
-               filter(uhf %in% c("All"))%>%
-               filter(borough != "All")%>%
-               filter(gender == "All")%>%
-               filter(age == "All")
-
+HIV_diagnosis_data = hiv_data %>%
+  filter(uhf %in% c("All")) %>%
+  filter(borough != "All") %>%
+  filter(gender == "All") %>%
+  filter(age == "All")
 
 spread_boros = HIV_diagnosis_data %>% 
   spread(key = borough, value = hiv_diagnosis_rate) %>% 
   janitor::clean_names()
 
-spread_boros %>% plot_ly(x = ~year, y = ~manhattan, type = 'bar', name =
-                           'Manhattan') %>%
+spread_boros %>% plot_ly(x = ~year, y = ~manhattan, type = 'bar', name = 'Manhattan') %>%
   add_trace(y = ~bronx, name = 'Bronx') %>%
   add_trace(y = ~brooklyn, name = 'Brooklyn') %>%
   add_trace(y = ~queens, name = 'Queens') %>%
   add_trace(y = ~staten_island, name = 'Staten Island') %>%
-  layout(title = "Death Rate Types over the Years", 
-         annotations = list(x = 1, y = -0.1, 
-                            text = 'Figure 2',
-                            font = list(size = 12),
-                            showarrow = FALSE,
-                            xref = 'paper', xanchor = 'right',
-                            yref = 'paper', yanchor = 'auto',
-                            xshift = 0, yshift = 0),
-         yaxis = list(title = 'Rate'), 
-         barmode = 'stack')
+  layout(title = "HIV Diagnosis Rate by Borough over Time",
+         yaxis = list(title = 'HIV Diagnosis Rate'), 
+         barmode = 'group')
 ```
 
    In Figure 2, The original dataset was filtered down to get the summary data by
