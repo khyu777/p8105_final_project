@@ -6,16 +6,7 @@ output:
     keep_md: yes
  
 ---
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 
-library(tidyverse)
-library(ggridges)
-library(plotly)
-
-hiv_data = read_csv(file = "./data/DOHMH_HIV_AIDS_Annual_Report.csv") %>%
-  janitor::clean_names()
-```
 
 **Project Title**
 
@@ -85,7 +76,8 @@ calendar year whose last HIV viral load value was ≤200 copies/mL".
 
 **Big Picture Visualizations**
 
-```{r}
+
+```r
 hiv_year_data = hiv_data %>% 
   filter(
     borough == "All",
@@ -112,6 +104,9 @@ stacked_death_plot %>% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type 
          yaxis = list(title = 'Rate'), 
          barmode = 'stack')
 ```
+
+<!--html_preserve--><div id="htmlwidget-789c9521f300661848c2" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-789c9521f300661848c2">{"x":{"visdat":{"20483e2ddc2":["function () ","plotlyVisDat"]},"cur_data":"20483e2ddc2","attrs":{"20483e2ddc2":{"x":{},"y":{},"name":"Non HIV-related death rate","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"20483e2ddc2.1":{"x":{},"y":{},"name":"HIV-related death rate","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Death Rate Types over the Years","annotations":[{"x":1,"y":-0.1,"text":"Figure 1","font":{"size":12},"showarrow":false,"xref":"paper","xanchor":"right","yref":"paper","yanchor":"auto","xshift":0,"yshift":0}],"yaxis":{"domain":[0,1],"automargin":true,"title":"Rate"},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"year"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"data":[{"x":[2011,2012,2013,2014],"y":[7.8,7.2,7,6.8],"name":"Non HIV-related death rate","type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2011,2012,2013,2014],"y":[5.8,4.7,4.1,3.3],"name":"HIV-related death rate","type":"bar","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script><!--/html_preserve-->
   
    Data was first filtered so that the resulting data frame included only
 observations that aggregated results across all boroughs, UHFs, genders, ages, 
@@ -127,8 +122,8 @@ stacked bar graph, there is a decreasing trend in HIV-related death rate types
 over time. Furthermore, the non-HIV related death rates appear to be relatively
 constant.
 
-```{r warning = FALSE}
 
+```r
 HIV_diagnosis_data = hiv_data%>%
                janitor::clean_names()%>%
                filter(uhf %in% c("All"))%>%
@@ -159,6 +154,9 @@ spread_boros %>% plot_ly(x = ~year, y = ~manhattan, type = 'bar', name =
          barmode = 'stack')
 ```
 
+<!--html_preserve--><div id="htmlwidget-c703bff7ad4a71131328" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c703bff7ad4a71131328">{"x":{"visdat":{"20483ef539d":["function () ","plotlyVisDat"]},"cur_data":"20483ef539d","attrs":{"20483ef539d":{"x":{},"y":{},"name":"Manhattan","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"20483ef539d.1":{"x":{},"y":{},"name":"Bronx","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"20483ef539d.2":{"x":{},"y":{},"name":"Brooklyn","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"20483ef539d.3":{"x":{},"y":{},"name":"Queens","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"20483ef539d.4":{"x":{},"y":{},"name":"Staten Island","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Death Rate Types over the Years","annotations":[{"x":1,"y":-0.1,"text":"Figure 2","font":{"size":12},"showarrow":false,"xref":"paper","xanchor":"right","yref":"paper","yanchor":"auto","xshift":0,"yshift":0}],"yaxis":{"domain":[0,1],"automargin":true,"title":"Rate"},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"year"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"data":[{"x":[2011,2012,2013,2014,2015],"y":[57.8,53.7,48.5,45.3,40.1],"name":"Manhattan","type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2011,2012,2013,2014,2015],"y":[55.3,49.4,46.3,43.3,42.3],"name":"Bronx","type":"bar","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2011,2012,2013,2014,2015],"y":[44.2,37.8,32.8,33.5,29.7],"name":"Brooklyn","type":"bar","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2011,2012,2013,2014,2015],"y":[25.1,24.6,23.3,23,22.2],"name":"Queens","type":"bar","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2011,2012,2013,2014,2015],"y":[9.9,9.4,13.3,10.5,11.5],"name":"Staten Island","type":"bar","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script><!--/html_preserve-->
+
    In Figure 2, The original dataset was filtered down to get the summary data by
 borough for each year. Then, a bar plot was used for the HIV diagnosis rates,
 clustered by the five boroughs for each year in order of decreasing values (from
@@ -178,7 +176,8 @@ between boroughs, not just the trends.
 
 
 **Subgroup Visualizations**
-```{r}
+
+```r
 hiv = hiv_data %>%
   filter(borough == "All") %>%
   select(year, race, hiv_diagnosis_rate, gender) %>%
@@ -195,6 +194,8 @@ hiv %>%
     caption = "Figure 3. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report"
   )
 ```
+
+![](Final_Report_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
   In order to assess the HIV diagnosis rates by race, the 'All' observations within 
 the borough variable was kept in the dataset (Figure 3). This was done to ensure 
@@ -225,7 +226,8 @@ rates within males of the White and Asian/Pacific Islander racial groups, in
 females, there appears to be no linear change over time.
 
 
-```{r}
+
+```r
 split_by_race = hiv_data %>% 
   filter(
     age == "All",
@@ -244,6 +246,8 @@ ggplot(split_by_race, aes(x = year, y = percent_viral_suppression, group = race)
     caption = "Figure 4. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report"
   )
 ```
+
+![](Final_Report_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
   Percent viral suppression by race and faceted by gender: Data was first filtered
 so that the resulting data frame included only observations that aggregated
@@ -273,7 +277,8 @@ time. Interestingly, in females, the Other/Unknown race has the lowest percent
 viral suppression.
 
 
-```{r}
+
+```r
 hiv_age =
   hiv_data %>%
   filter(age != "All", borough == "All", uhf == "All")
@@ -291,6 +296,8 @@ hiv_age %>%
     caption = "Figure 5. Data from the NYCDOHMH HIV/AIDS Surveillance Annual Report"
   )
 ```
+
+![](Final_Report_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
   In Figure 5, the data was first filtered to obtain rows that only contained 
 values for gender and age. Then, HIV diagnosis rates over time was plotted as a 
@@ -313,7 +320,8 @@ groups, the trend appears to remain constant at the year 2015.
 
 Our exploratory data visualizations indicated that there are strong disparities in HIV Infection Rates amongst the five boroughs, various age groups and genders. As a result, we decided to fit a multiple linear regression model to compute parameter estimates and to see whether these disparities are statistically significant at the 5% level of significance.
 
-```{r}
+
+```r
 hiv_clean = hiv_data %>% 
   janitor::clean_names() %>% 
   filter(borough != "All")%>%
@@ -333,6 +341,22 @@ linear_clean = linear_fit %>%
 linear_clean %>% 
   knitr::kable(digits = 3)
 ```
+
+
+
+term                      estimate   std.error   statistic   p.value
+-----------------------  ---------  ----------  ----------  --------
+(Intercept)                  8.638       2.026       4.263     0.000
+Gender: Male                38.946       1.264      30.800     0.000
+Borough: Bronx               0.330       2.014       0.164     0.870
+Borough: Brooklyn          -12.317       1.809      -6.808     0.000
+Borough: Queens            -26.336       1.848     -14.249     0.000
+Borough: Staten Island     -33.784       2.338     -14.451     0.000
+Age Group: 20 - 29          42.615       2.190      19.458     0.000
+Age Group: 30 - 39          31.384       2.190      14.330     0.000
+Age Group: 40 - 49          29.515       2.190      13.476     0.000
+Age Group: 50 - 59          13.299       2.190       6.072     0.000
+Age Group: 60+              -5.407       2.190      -2.469     0.014
 
 Notable results from our multiple linear regression analysis include:
 
