@@ -52,16 +52,16 @@ Despite efforts to reduce the number of new infections, the HIV Surveillance Ann
   The data that was utilized for this project was the New York City Department of
 Health and Mental Hygeine (NYCDHMH) HIV/AIDS Surveillance Annual Report. This
 dataset is contains HIV/AIDS-related data on individuals thirteen years or older 
-in all NYC boroughs as well as throughou the city (DOHMH HIV/AIDS Annual Report).
-The dataset was downloaded from NYCOpen Data, an open website that provides
-information and data to New Yorkers by the NYC government. Once downloaded, the 
-raw data was imported into Rstudio as a csv file.
+in all NYC boroughs (DOHMH HIV/AIDS Annual Report).The dataset was downloaded 
+from NYCOpen Data, an open website that provides information and data to New 
+Yorkers by the NYC government. Once downloaded, the raw data was imported into
+Rstudio as a csv file.
 
-  Within this particular data there are The data contained within the dataset were
-collected between the years 2011 through 2016. The HIV/AIDS surveillance Annual
-Report contains eighteen variables, including year, age, race, HIV diagnoses,
-deaths, and percent viral suppression and percent linked to care. The variable
-outcomes used within the visualizations are defined as followed:
+  The data contained within the dataset were collected between the years 2011
+through 2016. The HIV/AIDS Surveillance Annual Report contains eighteen variables,
+including year, age, race, HIV diagnoses, deaths, percent viral suppression and
+percent linked to care. The variable outcomes used within the visualizations 
+are defined as followed:
 
 * Non-HIV-related death rate = "Number of deaths attributed to other causes per
 1,000 people mid-year living with HIV/AIDS"" 
