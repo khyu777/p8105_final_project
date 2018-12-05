@@ -59,7 +59,7 @@ stacked_death_plot %>% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type 
          barmode = 'stack')
 ```
 
-There is a downward trend in the total number of deaths per 1,000 people living with HIV/AIDS in New York City over the years. When further exploring the breakdown of causes of death within this overall death rate, it is revealed that the driving component for this reduction in total death rate is the decrease in number of deaths attributed to HIV/AIDS. By contrast, the number of deaths attributed to other causes has remained relatively consistent across the years. This reflects achievements in improving the extent that HIV/AIDS has been fatal for New York City residents living with HIV/AIDS. 
+There is a downward trend in the total number of deaths per 1,000 people living with HIV/AIDS in New York City over the years. When further exploring the breakdown of causes of death within this overall death rate, it is revealed that the driving component for this reduction in total death rate is the decrease in number of deaths attributed to HIV/AIDS. By contrast, the number of deaths attributed to other causes has remained relatively consistent across the years. This reflects achievements in improving the extent to which HIV/AIDS has been fatal for New York City residents living with HIV/AIDS. 
 
 ###HIV Diagnosis Rates by Borough
 
