@@ -20,7 +20,7 @@ library(tidyverse)
 
 ###HIV Diagnosis Rate by Race and Gender
 
-Racial and Gender-based disparities in the rate of HIV diagnosis are vital components of informed and effective intervention planning. The visualization below represents the trends in HIV diagnosis rate per 100,000 NYC residents from 2011 to 2015 by gender and race.
+Racial and gender-based disparities in the rate of HIV diagnosis are vital components of informed and effective intervention planning. The visualization below represents the trends in HIV diagnosis rate per 100,000 NYC residents from 2011 to 2015 by gender and race.
 
 ```{r race HIV diagnosis rate, echo = FALSE, message=FALSE, warning=FALSE}
 #Reading in and tidying the data, and for this chunk, getting summary data where data for all of NYC is split by race, original code by Briana, edited by Noah
@@ -52,7 +52,7 @@ HIV diagnosis rates are consistently higher for men compared to women, and for B
 
 ###HIV Viral Suppression Percentage by Race and Gender
 
-While HIV diagnosis rate is a valuable outcome to understand and quantify, it is not the only HIV-related variable worth examining. Viral Suppression, which is defined here as the "Proportion of people living with diagnosed HIV infection 13 years of age or older with at least one viral load test during the calendar year whose last HIV viral load value was ≤200 copies/mL", is an equally important outcome. This viral suppression, which massively decreases chances of HIV transmission and improves the general health of an HIV-positive individual, varies by Gender and Race:
+While HIV diagnosis rate is a valuable outcome to understand and quantify, it is not the only HIV-related variable worth examining. Viral suppression, which is defined here as the "Proportion of people living with diagnosed HIV infection 13 years of age or older with at least one viral load test during the calendar year whose last HIV viral load value was ≤200 copies/mL", is an equally important outcome. This viral suppression, which massively decreases chances of HIV transmission and improves the general health of an HIV-positive individual, varies by Gender and Race:
 "
 
 ```{r race HIV viral suppression, echo = FALSE}
