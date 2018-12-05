@@ -318,25 +318,25 @@ linear_clean = linear_fit %>%
   mutate(term = str_replace(term, "^gender", "Gender: ")) %>% 
   mutate(term = str_replace(term, "^age", "Age Group: "))
 
-linear_clean 
+linear_clean %>% 
+  knitr::kable(digits = 3, format = "markdown")
 ```
 
-```
-## # A tibble: 11 x 5
-##    term                   estimate std.error statistic   p.value
-##    <chr>                     <dbl>     <dbl>     <dbl>     <dbl>
-##  1 (Intercept)               8.64       2.03     4.26  2.09e-  5
-##  2 Gender: Male             38.9        1.26    30.8   9.96e-180
-##  3 Borough: Bronx            0.330      2.01     0.164 8.70e-  1
-##  4 Borough: Brooklyn       -12.3        1.81    -6.81  1.21e- 11
-##  5 Borough: Queens         -26.3        1.85   -14.2   1.55e- 44
-##  6 Borough: Staten Island  -33.8        2.34   -14.5   1.03e- 45
-##  7 Age Group: 20 - 29       42.6        2.19    19.5   3.27e- 79
-##  8 Age Group: 30 - 39       31.4        2.19    14.3   5.30e- 45
-##  9 Age Group: 40 - 49       29.5        2.19    13.5   3.72e- 40
-## 10 Age Group: 50 - 59       13.3        2.19     6.07  1.43e-  9
-## 11 Age Group: 60+           -5.41       2.19    -2.47  1.36e-  2
-```
+
+
+|term                   | estimate| std.error| statistic| p.value|
+|:----------------------|--------:|---------:|---------:|-------:|
+|(Intercept)            |    8.638|     2.026|     4.263|   0.000|
+|Gender: Male           |   38.946|     1.264|    30.800|   0.000|
+|Borough: Bronx         |    0.330|     2.014|     0.164|   0.870|
+|Borough: Brooklyn      |  -12.317|     1.809|    -6.808|   0.000|
+|Borough: Queens        |  -26.336|     1.848|   -14.249|   0.000|
+|Borough: Staten Island |  -33.784|     2.338|   -14.451|   0.000|
+|Age Group: 20 - 29     |   42.615|     2.190|    19.458|   0.000|
+|Age Group: 30 - 39     |   31.384|     2.190|    14.330|   0.000|
+|Age Group: 40 - 49     |   29.515|     2.190|    13.476|   0.000|
+|Age Group: 50 - 59     |   13.299|     2.190|     6.072|   0.000|
+|Age Group: 60+         |   -5.407|     2.190|    -2.469|   0.014|
 
 Notable results from our multiple linear regression analysis include:
 

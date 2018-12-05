@@ -311,7 +311,8 @@ linear_clean = linear_fit %>%
   mutate(term = str_replace(term, "^gender", "Gender: ")) %>% 
   mutate(term = str_replace(term, "^age", "Age Group: "))
 
-linear_clean 
+linear_clean %>% 
+  knitr::kable(digits = 3, format = "markdown")
 ```
 
 Notable results from our multiple linear regression analysis include:
