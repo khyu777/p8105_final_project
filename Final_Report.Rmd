@@ -363,17 +363,11 @@ living with HIV/AIDS.
 HIV diagnoses are not equally distributed between boroughs. Across the years,
 Manhattan has consistently seen the highest rate of HIV diagnoses per 100,000
 residents, followed by the Bronx, then Brooklyn, then Queens, and finally Staten
-Island. Of note, however, are the downwards trends in diagnosis rate for all three
-of the most disproportionately-impacted boroughs. Meanwhile, rates in diagnosis 
-have remained relatively stable within Queens and Staten Island.
-
-While the relative ranking in diagnosis rate has also remained generally consistent
-from 2011-2015 (e.g., Manhattan is usually the borough with the highest level of HIV
-diagnoses), 2015 saw Manhattan diagnosing fewer cases of HIV than the Bronx for the
-first time. This, along with dropping rates for Bronx and Brooklyn, imply
-improvements amongst these three heavily-burdened areas. Unfortunately, the lack of
-improvement amongst the remaining boroughs might reveal gaps in progress for 
-certain geographic areas
+Island. Of note, however, is that 2015 saw Manhattan diagnosing fewer cases of HIV
+than the Bronx for the first time. This, along with an overall downwards trend in
+diagnoses for Manhattan, the Bronx, and Brooklyn, imply improvements amongst these
+three most heavily-burdened areas. Unfortunately, the lack of improvement within
+Queens and Staten Island might reveal gaps in progress for certain geographic areas.
 
 
 *Subgroup Analysis*
