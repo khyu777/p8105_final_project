@@ -51,11 +51,10 @@ Despite efforts to reduce the number of new infections, the HIV Surveillance Ann
 
   The data that was utilized for this project was the New York City Department of
 Health and Mental Hygeine (NYCDHMH) HIV/AIDS Surveillance Annual Report. This
-dataset is contains HIV/AIDS-related data on individuals thirteen years or older 
-in all NYC boroughs (DOHMH HIV/AIDS Annual Report).The dataset was downloaded 
-from NYCOpen Data, an open website that provides information and data to New 
-Yorkers by the NYC government. Once downloaded, the raw data was imported into
-Rstudio as a csv file.
+dataset contains HIV/AIDS-related data on individuals thirteen years or older 
+in all NYC boroughs.The dataset was downloaded from NYCOpen Data, an open website
+that provides information and data to New Yorkers by the NYC government. Once
+downloaded, the raw data was imported into Rstudio as a CSV file.
 
   The data contained within the dataset were collected between the years 2011
 through 2016. The HIV/AIDS Surveillance Annual Report contains eighteen variables,
@@ -64,16 +63,16 @@ percent linked to care. The variable outcomes used within the visualizations
 are defined as followed:
 
 * Non-HIV-related death rate = "Number of deaths attributed to other causes per
-1,000 people mid-year living with HIV/AIDS"" 
+1,000 people mid-year living with HIV/AIDS" 
 
-* HIV-related death rate = "Number of deaths attributed to HIV/AIDS per 1,000 people mid-year living with HIV/AIDS"" 
+* HIV-related death rate = "Number of deaths attributed to HIV/AIDS per 1,000 people mid-year living with HIV/AIDS" 
 
 * HIV diagnosis rate = "HIV diagnoses per 100,000 NYC population using annual
 intercensal population estimates"
 
 * Percent viral suppression = "Proportion of people living with diagnosed HIV
 infection 13 years of age or older with at least one viral load test during the
-calendar year whose last HIV viral load value was ≤200 copies/mL.
+calendar year whose last HIV viral load value was ≤200 copies/mL".
 
 (NYCDOHMH HIV/AIDS Surveillance Annual Report)
 
@@ -112,22 +111,19 @@ stacked_death_plot %>% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type 
          barmode = 'stack')
 ```
   
-  Data was first filtered so that the resulting data frame included only
+   Data was first filtered so that the resulting data frame included only
 observations that aggregated results across all boroughs, UHFs, genders, ages, 
-and races. This data frame was then tidied so that death rate type (i.e.
-"HIV-related death rate," "Non-HIV-related death rate," and overall "death rate")
-was a single variable with the accompanying rate value in a separate variable
-column. Any observation that had a rate value of "99999" was filtered out, as this
-represented an observation where rate value was not calculated. Any observation
-where the death rate type was the total death rate was also filtered out. A 
-stacked bar graph was then constructed with rate values plotted on the y-axis and
-year on the x-axis. Each bar represents the overall death rate per a year, 
-segmented by death rate type ("HIV-related" and "Non-HIV-related").  
+and races. Any observation for the hiv_related_death_rate and
+non_hiv_related_death_rate variables that had a value of “99999” was filtered out,
+as this represented an observation where rate value was not calculated. A stacked
+bar plot.ly graph was then constructed, with years on the x-axis and death rate on
+the y-axis. Each bar represents the overall death rate per a year, segmented by
+death rate type (“HIV-related” and “Non-HIV-related”)
   
   Figure 1 illustrates the death rate types over the years. According to the 
-stacked bar graph, there is a decreasing trend in HIV-related death types over the
-years. Furthermore, there are more non-HIV-related deaths over the years.
-Interestingly, however, these deaths are also decreasing over time. 
+stacked bar graph, there is a decreasing trend in HIV-related death rate types 
+over time. Furthermore, the non-HIV related death rates appear to be relatively
+constant.
 
 ```{r warning = FALSE}
 
@@ -168,17 +164,14 @@ Manhattan to Staten Island). Originally a spaghetti plot was used, however, it f
 worthwhile to diversify the analytical methods and emphasize the differences 
 between boroughs, not just the trends.
 
-  Figure 2 illustrates the HIV diagnosis rate by borough over time. It can be
-observed that, over time, the HIV diagnosis rates have decreased in all of the
-boroughs, except for Staten Island. For this particular borough, the HIV diagnosis
-rate actually increased in the years 2013 and 2016. Additionally, there is also 
-an observed spike in diagnosis rates in the year 2014 for Brooklyn. 
-
-  Also observed, over time, the Manhattan borough has the highest HIV diagnosis 
-rate of all the NYC boroughs while Staten Island has the least. However, in 2015,
-the Bronx has a higher number of HIV diagnosis rates compared to Manhattan. Lastly,
-the Queens borough appears to have a relatively static change in HIV diagnosis
-rates.
+ The original dataset was filtered down to get the summary data by borough for 
+each year. To construct a plot.ly bar plot, the “borough” variable was spread 
+into separate variable columns for each borough, with HIV diagnosis rate values
+populating the variable observations. The plot shows HIV diagnosis rates, clustered
+by the five boroughs for each year in order of decreasing values (from Manhattan 
+to Staten Island). Originally a spaghetti plot was used, however, it felt 
+worthwhile to diversify the analytical methods and emphasize the differences 
+between boroughs, not just the trends.
 
 
 
@@ -205,7 +198,7 @@ hiv %>%
 the borough variable was kept in the dataset (Figure 3). This was done to ensure 
 that the output sought was not confounded by results specific to each borough, 
 but rather to all boroughs. The variables year, race, gender and HIV diagnosis 
-rates were spepcifically selected for this analysis. Additonally, being that the 
+rates were specifically selected for this analysis. Additonally, being that the 
 race variable was being visually assessed, the 'All' observations within the 
 variable was filtered out. We thought it would have been interesting to observe 
 the differences in HIV diagnosis rates by race and gender and, as such, the 
@@ -213,23 +206,22 @@ spaghetti plot was faceted by gender.
 
   Figure 3 illustrates the HIV diagnosis rates by race and faceted by gender over
 time. It can be observed that, regardless of gender, Blacks have the highest 
-numbers of diagnosis rates with Latinos/Hispanics having the second highest rates
-over the 6-year period. Furthermore, Asian/Pacific Islander appears to have the 
+numbers of diagnosis rates while Latinos/Hispanics have the second highest rates
+over time. Furthermore, Asian/Pacific Islanders appear to have the 
 lowest numbers of HIV diagnosis rates. There is also an interesting peak observed
 among the race Other/Unknown observed in the year 2013, that cannot be explained.
-Additionally, there is also an observed decrease in the rates of HIV diagnosis 
-rates in the Black and Other/Unknown raceson when not looking at differentiation 
-by gender.
+Additionally, there is also an overall observed decrease in the rates of HIV
+diagnosis rates among Black and Other/Unknown races when not facetting by gender.
   
-  When visually assessing the plot by gender, males have a much higher HIV 
+  When visually assessing the plot by gender, males have much higher HIV 
 diagnosis rates compared to females. Looking more closely, the diagnosis rates of
-Black males are significantly larger compared to Black females with the same 
-distinction being made in all races, though not as wide. In Black males and 
-females, there is a decrease in IV diagnosis rates over time. There is also a 
-slight decrease in the Latino/Hispanic population in females, but an increase in 
-the males. Furthermore, while there is a decrease in HIV diagnosis rates within 
-males of the White and Asian/Pacific Islander racial groups, in females, there
-appears to be no linear change over time.
+Black males are significantly larger compared to Black females. This observation 
+is the same among all races, though the differences are not as wide. There is
+also a slight decrease in the Latino/Hispanic population in females, but an 
+increase in the males. Furthermore, while there is a decrease in HIV diagnosis 
+rates within males of the White and Asian/Pacific Islander racial groups, in 
+females, there appears to be no linear change over time.
+
 
 ```{r}
 split_by_race = hiv_data %>% 
@@ -256,12 +248,12 @@ so that the resulting data frame included only observations that aggregated
 results across all boroughs, UHFs, and ages. This data frame also filtered out 
 any observations that aggregated data across race, as we wanted to be able to
 explore HIV outcomes by different races. There were no observations that
-aggregated outcomes across all genders by each race, so I made the decision to 
+aggregated outcomes across all genders by each race, so the decision was made to 
 leave these outcomes split by gender instead of manually combining findings for 
-each gender. This meant I had to facet by gender in the resulting plot that explores
-changes in an outcome for each race across years. A spaghetti plot was thus
-constructed, faceted by gender, showing change in "percent viral suppression" on 
-the y-axis for each race over years (on the x-axis).
+each gender. As such, the graph was facetted by gender resulting in a plot that
+explores changes in an outcome for each race across years. A spaghetti plot was 
+thus constructed, faceted by gender, showing change in "percent viral suppression"
+on the y-axis for each race over years (on the x-axis).
 
    Figure 4 illiustrates the percent viral suppression by race over the years. 
 In both plots, there is an overall increase in the percent viral supporession 
@@ -356,8 +348,8 @@ of causes of death within this overall death rate, it is revealed that the drivi
 component for this reduction in total death rate is the decrease in number of deaths
 attributed to HIV/AIDS. By contrast, the number of deaths attributed to other causes
 has remained relatively consistent across the years. This reflects achievements in
-improving the extent that HIV/AIDS has been fatal for New York City residents living
-with HIV/AIDS.
+improving the extent to which HIV/AIDS has been fatal for New York City residents
+living with HIV/AIDS.
 
 HIV diagnoses are not equally distributed between boroughs. Across the years,
 Manhattan has consistently seen the highest rate of HIV diagnoses per 100,000
