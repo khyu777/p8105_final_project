@@ -224,7 +224,7 @@ $(document).ready(function () {
 <li>Briana Lettsome (Bjl2150)</li>
 </ul>
 <p><strong>Motivation / Related Work</strong></p>
-<p>According to the the past decade or so, improvements in drug therapies and prevention intervations have led to a decreased number of AIDS cases. In June, 2014, New York Governor Andrew Cuomo announced a new strategy designed to “End the Epidemic” in the state through a combination of increased HIV screening and testing, promotion of Pre-exposure Prophylaxis (PrEP) and improved linkage and retention in clinical care for HIV-positive persons. Since then, the New York City Department of Health and Mental Hygiene (DOHMH) reported a decline in new infections of nearly 8 percent annually or approximately 15% since the campaign was launched.</p>
+<p>In the last decade, improvements in drug therapies and prevention intervations have led to a decreased number of AIDS cases. In June, 2014, New York Governor Andrew Cuomo announced a new strategy designed to “End the Epidemic” in the state through a combination of increased HIV screening and testing, promotion of Pre-exposure Prophylaxis (PrEP) and improved linkage and retention in clinical care for HIV-positive persons. Since then, the New York City Department of Health and Mental Hygiene (DOHMH) reported a decline in new infections of nearly 8 percent annually or approximately 15% since the campaign was launched.</p>
 <p>Despite efforts to reduce the number of new infections, the HIV Surveillance Annual Report presented a number of key points that motivated our decision to analyze HIV infections data. Amongst them, the most noteworthy are:</p>
 <ul>
 <li>Poor New Yorkers, as well as African-American and Hispanic New Yorkers, bear a disproportionate burden of illness and premature death.</li>
@@ -273,18 +273,6 @@ ggplot(stacked_death_plot, aes(x = year, y = death_rate_nums, group = death_rate
     caption = &quot;Figure 1&quot;
   )</code></pre>
 <p><img src="Final_Report_files/figure-html/unnamed-chunk-1-1.png" /><!-- --></p>
-<pre class="r"><code>#stacked_death_plot %&gt;% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type = &#39;bar&#39;, name = &#39;Non HIV-related death rate&#39;) %&gt;%
-#  add_trace(y = ~hiv_related_death_rate, name = &#39;HIV-related death rate&#39;) %&gt;%
-#  layout(title = &quot;Death Rate Types over the Years&quot;, 
-#         annotations = list(x = 1, y = -0.1, 
-#                            text = &#39;Figure 1&#39;,
-#                            font = list(size = 12),
-#                            showarrow = FALSE,
-#                            xref = &#39;paper&#39;, xanchor = &#39;right&#39;,
-#                            yref = &#39;paper&#39;, yanchor = &#39;auto&#39;,
-#                            xshift = 0, yshift = 0),
-#         yaxis = list(title = &#39;Rate&#39;), 
-#         barmode = &#39;stack&#39;)</code></pre>
 <p>Data was first filtered so that the resulting data frame included only observations that aggregated results across all boroughs, UHFs, genders, ages, and races. Any observation for the hiv_related_death_rate and non_hiv_related_death_rate variables that had a value of “99999” was filtered out, as this represented an observation where rate value was not calculated. A stacked bar plot.ly graph was then constructed, with years on the x-axis and death rate on the y-axis. Each bar represents the overall death rate per a year, segmented by death rate type (“HIV-related” and “Non-HIV-related”)</p>
 <p>Figure 1 illustrates the death rate types over the years. According to the stacked bar graph, there is a decreasing trend in HIV-related death rate types over time. Furthermore, the non-HIV related death rates appear to be relatively constant.</p>
 <pre class="r"><code>HIV_diagnosis_data = hiv_data %&gt;%
@@ -305,16 +293,8 @@ HIV_diagnosis_data %&gt;%
        y = &quot;HIV Diagnosis Rate&quot;,
        caption = &quot;Figure 2&quot;)</code></pre>
 <p><img src="Final_Report_files/figure-html/unnamed-chunk-2-1.png" /><!-- --></p>
-<pre class="r"><code>#spread_boros %&gt;% plot_ly(x = ~year, y = ~manhattan, type = &#39;bar&#39;, name = &#39;Manhattan&#39;) %&gt;%
-#  add_trace(y = ~bronx, name = &#39;Bronx&#39;) %&gt;%
-#  add_trace(y = ~brooklyn, name = &#39;Brooklyn&#39;) %&gt;%
-#  add_trace(y = ~queens, name = &#39;Queens&#39;) %&gt;%
-#  add_trace(y = ~staten_island, name = &#39;Staten Island&#39;) %&gt;%
-#  layout(title = &quot;HIV Diagnosis Rate by Borough over Time&quot;,
-#         yaxis = list(title = &#39;HIV Diagnosis Rate&#39;), 
-#         barmode = &#39;group&#39;)</code></pre>
-<p>In Figure 2, The original dataset was filtered down to get the summary data by borough for each year. Then, a bar plot was used for the HIV diagnosis rates, clustered by the five boroughs for each year in order of decreasing values (from Manhattan to Staten Island). Originally a spaghetti plot was used, however, it felt worthwhile to diversify the analytical methods and emphasize the differences between boroughs, not just the trends.</p>
-<p>The original dataset was filtered down to get the summary data by borough for each year. To construct a plot.ly bar plot, the “borough” variable was spread into separate variable columns for each borough, with HIV diagnosis rate values populating the variable observations. The plot shows HIV diagnosis rates, clustered by the five boroughs for each year in order of decreasing values (from Manhattan to Staten Island). Originally a spaghetti plot was used, however, it felt worthwhile to diversify the analytical methods and emphasize the differences between boroughs, not just the trends.</p>
+<p>In Figure 2, the original dataset was filtered down to get the summary data by borough for each year. To construct a plot.ly bar plot, the “borough” variable was spread into separate variable columns for each borough, with HIV diagnosis rate values populating the variable observations. The plot shows HIV diagnosis rates, clustered by the five boroughs for each year in order of decreasing values (from Manhattan to Staten Island). Originally a spaghetti plot was used, however, it felt worthwhile to diversify the analytical methods and emphasize the differences between boroughs, not just the trends.</p>
+<p><em>Note: Figures 1 and 2 were originally created using plot.ly. However, they were not displayed correctly in the .md file. As such, these figures were re-made using ggplot.</em></p>
 <p><strong>Subgroup Visualizations</strong></p>
 <pre class="r"><code>hiv = hiv_data %&gt;%
   filter(borough == &quot;All&quot;) %&gt;%
@@ -374,7 +354,7 @@ hiv_age %&gt;%
   )</code></pre>
 <p><img src="Final_Report_files/figure-html/unnamed-chunk-5-1.png" /><!-- --></p>
 <p>In Figure 5, the data was first filtered to obtain rows that only contained values for gender and age. Then, HIV diagnosis rates over time was plotted as a line graph, grouped by age groups and colored accordingly. To see if the rate distribution among age groups differed by gender, the plot was faceted by gender as well.</p>
-<p>Similar to the observations made in Figure 3, males have disproportionately higher HIV diagnosis rates compared to females. In Figure 4, however, within females, there appears to be a relatively similar distribution of HIV diagnosis rates among age groups over time. Conversely, among males, the diagnosis rates differs drastically by age groupp. The 20-29 age group has the highest HIV diagnosis rates over time.Individuals within the 60+ age group has the lowest HIV diagnosis rates over time. On a whole, for the age groups 20-29, 30-39, and 40-49, there appears to be a decrease in HIV diagnosis rates. For the remaining age groups, the trend appears to remain constant at the year 2015.</p>
+<p>Similar to the observations made in Figure 3, males have disproportionately higher HIV diagnosis rates compared to females. In Figure 4, however, within females, there appears to be a relatively similar distribution of HIV diagnosis rates among age groups over time. Conversely, among males, the diagnosis rates differs drastically by age group. The 20-29 age group has the highest HIV diagnosis rates over time. Individuals within the 60+ age group has the lowest HIV diagnosis rates over time. On a whole, for the age groups 20-29, 30-39, and 40-49, there appears to be a decrease in HIV diagnosis rates. For the remaining age groups, the trend appears to remain constant at the year 2015.</p>
 <p><strong>Additional Statistical Analysis</strong></p>
 <p>Our exploratory data visualizations indicated that there are strong disparities in HIV Infection Rates amongst the five boroughs, various age groups and genders. As a result, we decided to fit a multiple linear regression model to compute parameter estimates and to see whether these disparities are statistically significant at the 5% level of significance.</p>
 <pre class="r"><code>hiv_clean = hiv_data %&gt;% 
@@ -393,98 +373,21 @@ linear_clean = linear_fit %&gt;%
   mutate(term = str_replace(term, &quot;^gender&quot;, &quot;Gender: &quot;)) %&gt;% 
   mutate(term = str_replace(term, &quot;^age&quot;, &quot;Age Group: &quot;))
 
-linear_clean %&gt;% 
-  knitr::kable(digits = 3)</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">term</th>
-<th align="right">estimate</th>
-<th align="right">std.error</th>
-<th align="right">statistic</th>
-<th align="right">p.value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">(Intercept)</td>
-<td align="right">8.638</td>
-<td align="right">2.026</td>
-<td align="right">4.263</td>
-<td align="right">0.000</td>
-</tr>
-<tr class="even">
-<td align="left">Gender: Male</td>
-<td align="right">38.946</td>
-<td align="right">1.264</td>
-<td align="right">30.800</td>
-<td align="right">0.000</td>
-</tr>
-<tr class="odd">
-<td align="left">Borough: Bronx</td>
-<td align="right">0.330</td>
-<td align="right">2.014</td>
-<td align="right">0.164</td>
-<td align="right">0.870</td>
-</tr>
-<tr class="even">
-<td align="left">Borough: Brooklyn</td>
-<td align="right">-12.317</td>
-<td align="right">1.809</td>
-<td align="right">-6.808</td>
-<td align="right">0.000</td>
-</tr>
-<tr class="odd">
-<td align="left">Borough: Queens</td>
-<td align="right">-26.336</td>
-<td align="right">1.848</td>
-<td align="right">-14.249</td>
-<td align="right">0.000</td>
-</tr>
-<tr class="even">
-<td align="left">Borough: Staten Island</td>
-<td align="right">-33.784</td>
-<td align="right">2.338</td>
-<td align="right">-14.451</td>
-<td align="right">0.000</td>
-</tr>
-<tr class="odd">
-<td align="left">Age Group: 20 - 29</td>
-<td align="right">42.615</td>
-<td align="right">2.190</td>
-<td align="right">19.458</td>
-<td align="right">0.000</td>
-</tr>
-<tr class="even">
-<td align="left">Age Group: 30 - 39</td>
-<td align="right">31.384</td>
-<td align="right">2.190</td>
-<td align="right">14.330</td>
-<td align="right">0.000</td>
-</tr>
-<tr class="odd">
-<td align="left">Age Group: 40 - 49</td>
-<td align="right">29.515</td>
-<td align="right">2.190</td>
-<td align="right">13.476</td>
-<td align="right">0.000</td>
-</tr>
-<tr class="even">
-<td align="left">Age Group: 50 - 59</td>
-<td align="right">13.299</td>
-<td align="right">2.190</td>
-<td align="right">6.072</td>
-<td align="right">0.000</td>
-</tr>
-<tr class="odd">
-<td align="left">Age Group: 60+</td>
-<td align="right">-5.407</td>
-<td align="right">2.190</td>
-<td align="right">-2.469</td>
-<td align="right">0.014</td>
-</tr>
-</tbody>
-</table>
+linear_clean </code></pre>
+<pre><code>## # A tibble: 11 x 5
+##    term                   estimate std.error statistic   p.value
+##    &lt;chr&gt;                     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 (Intercept)               8.64       2.03     4.26  2.09e-  5
+##  2 Gender: Male             38.9        1.26    30.8   9.96e-180
+##  3 Borough: Bronx            0.330      2.01     0.164 8.70e-  1
+##  4 Borough: Brooklyn       -12.3        1.81    -6.81  1.21e- 11
+##  5 Borough: Queens         -26.3        1.85   -14.2   1.55e- 44
+##  6 Borough: Staten Island  -33.8        2.34   -14.5   1.03e- 45
+##  7 Age Group: 20 - 29       42.6        2.19    19.5   3.27e- 79
+##  8 Age Group: 30 - 39       31.4        2.19    14.3   5.30e- 45
+##  9 Age Group: 40 - 49       29.5        2.19    13.5   3.72e- 40
+## 10 Age Group: 50 - 59       13.3        2.19     6.07  1.43e-  9
+## 11 Age Group: 60+           -5.41       2.19    -2.47  1.36e-  2</code></pre>
 <p>Notable results from our multiple linear regression analysis include:</p>
 <ul>
 <li>Compared to Manhattan, all boroughs have a statistically significantly different HIV infection rate (p&lt;0.01), adjusting for gender and age group. In particular, on average, the Bronx has a 0.330 percentage point higher HIV infection rate compared to Manhattan, adjusting for gender and age group.</li>
@@ -497,7 +400,7 @@ linear_clean %&gt;%
 <p>HIV diagnoses are not equally distributed between boroughs. Across the years, Manhattan has consistently seen the highest rate of HIV diagnoses per 100,000 residents, followed by the Bronx, then Brooklyn, then Queens, and finally Staten Island. Of note, however, is that 2015 saw Manhattan diagnosing fewer cases of HIV than the Bronx for the first time. This, along with an overall downwards trend in diagnoses for Manhattan, the Bronx, and Brooklyn, imply improvements amongst these three most heavily-burdened areas. Unfortunately, the lack of improvement within Queens and Staten Island might reveal gaps in progress for certain geographic areas.</p>
 <p><em>Subgroup Analysis</em></p>
 <p>HIV diagnosis rates are consistently higher for men compared to women, and for Black and Latino/Hispanic individuals compared to other racial and ethnic groups. While these disparities exist, the overal trends for this outcome of HIV diagnosis rate indicate improvement, with general decreases among many groups, including the Black and Latino/Hispanic groups who face the highest rates. For Black men, as an example, the rate of HIV diagnosis plummeted across these few years from 150 per 100,000 to just over 100 per 100,000.</p>
-<p>The clear positive finding with this visualization is that viral suppression is increasing among all groups, with the exception of women in the “Other/Unknown” racial category who saw no change overall. While suppression proportions are similar between men and women, it appears that differences exist between racial/ethnic categories. Certain groups with higher rates of HIV diagnosis, such as Black men, can also be seen here with lower rates of viral suppression. Therefore, comprehensive measures should address the factors that lead to infection for vulnerable populations, while also ensuring equitable care and treatment for individuals who are already HIV-Positive.</p>
+<p>The clear positive finding, in Figure 4, is that viral suppression is increasing among all groups, with the exception of women in the “Other/Unknown” racial category who saw no change overall. While suppression proportions are similar between men and women, it appears that differences exist between racial/ethnic categories. Certain groups with higher rates of HIV diagnosis, such as Black men, can also be seen here with lower rates of viral suppression. Therefore, comprehensive measures should address the factors that lead to infection for vulnerable populations, while also ensuring equitable care and treatment for individuals who are already HIV-Positive.</p>
 <p>While there do not seem to be strong age-based disparities in HIV diagnosis rate among women, with the four central age categories essentially overlapped, men see strong differences, with 20-29 year olds facing the highest rates, followed by 30-39 year olds. Still, the rates among these more vulnerable populations are decreasing over time, and most other groups exhibit either a decrease in diagnosis rate or a flat trend. No groups demonstrate an increasing rate overall.</p>
 <p><strong>Conclusion</strong></p>
 <p>The overall burden caused by HIV/AIDS in New York City has been reduced over the years. This is seen in the improving health outcomes of HIV/AIDS city-wide, as well as in the declining numbers of new infections amongst the most impacted geographic areas.</p>
