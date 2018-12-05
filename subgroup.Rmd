@@ -52,8 +52,7 @@ HIV diagnosis rates are consistently higher for men compared to women, and for B
 
 ###HIV Viral Suppression Percentage by Race and Gender
 
-While HIV diagnosis rate is a valuable outcome to understand and quantify, it is not the only HIV-related variable worth examining. Viral suppression, which is defined here as the "Proportion of people living with diagnosed HIV infection 13 years of age or older with at least one viral load test during the calendar year whose last HIV viral load value was ≤200 copies/mL", is an equally important outcome. This viral suppression, which massively decreases chances of HIV transmission and improves the general health of an HIV-positive individual, varies by Gender and Race:
-"
+While HIV diagnosis rate is a valuable outcome to understand and quantify, it is not the only HIV-related variable worth examining. Viral suppression, which is defined here as the "Proportion of people living with diagnosed HIV infection 13 years of age or older with at least one viral load test during the calendar year whose last HIV viral load value was ≤200 copies/mL", is an equally important outcome. This viral suppression, which massively decreases chances of HIV transmission and improves the general health of an HIV-positive individual, varies by gender and race.
 
 ```{r race HIV viral suppression, echo = FALSE}
 #I am, again, filtering the data to represent all of NYC but split by race, original code by Bryce, edited by Noah
