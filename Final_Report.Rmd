@@ -63,18 +63,21 @@ Report contains eighteen variables, including year, age, race, HIV diagnoses,
 deaths, and percent viral suppression and percent linked to care. The variable
 outcomes used within the visualizations are defined as followed:
 
-* Non-HIV-related death rate =Number of deaths attributed to other causes per 1,000
-people mid-year living with HIV/AIDS 
+* Non-HIV-related death rate = "Number of deaths attributed to other causes per
+1,000 people mid-year living with HIV/AIDS"" 
 
-* HIV-related death rate = Number of deaths attributed to HIV/AIDS per 1,000 people mid-year living with HIV/AIDS 
+* HIV-related death rate = "Number of deaths attributed to HIV/AIDS per 1,000 people mid-year living with HIV/AIDS"" 
 
 * HIV diagnosis rate = "HIV diagnoses per 100,000 NYC population using annual
 intercensal population estimates"
 
 * Percent viral suppression = "Proportion of people living with diagnosed HIV
 infection 13 years of age or older with at least one viral load test during the
-calendar year whose last HIV viral load value was ≤200 copies/mL."
+calendar year whose last HIV viral load value was ≤200 copies/mL.
 
+(NYCDOHMH HIV/AIDS Surveillance Annual Report)
+
+                            
 
 ###**Exploratory analysis**
 
@@ -97,7 +100,7 @@ stacked_death_plot = hiv_year_data %>%
 
 stacked_death_plot %>% plot_ly(x = ~year, y = ~non_hiv_related_death_rate, type = 'bar', name = 'Non HIV-related death rate') %>%
   add_trace(y = ~hiv_related_death_rate, name = 'HIV-related death rate') %>%
-  layout(title = "Figure 1. Death Rate Types over the Years", 
+  layout(title = "Death Rate Types over the Years", 
          annotations = list(x = 1, y = -0.1, 
                             text = 'Figure 1',
                             font = list(size = 12),
@@ -146,9 +149,16 @@ spread_boros %>% plot_ly(x = ~year, y = ~manhattan, type = 'bar', name =
   add_trace(y = ~brooklyn, name = 'Brooklyn') %>%
   add_trace(y = ~queens, name = 'Queens') %>%
   add_trace(y = ~staten_island, name = 'Staten Island') %>%
-  layout(title = "Figure 2. HIV Diagnosis Rate by Borough over Time",
-         yaxis = list(title = 'HIV Diagnosis Rate'), 
-         barmode = 'group')
+  layout(title = "Death Rate Types over the Years", 
+         annotations = list(x = 1, y = -0.1, 
+                            text = 'Figure 2',
+                            font = list(size = 12),
+                            showarrow = FALSE,
+                            xref = 'paper', xanchor = 'right',
+                            yref = 'paper', yanchor = 'auto',
+                            xshift = 0, yshift = 0),
+         yaxis = list(title = 'Rate'), 
+         barmode = 'stack')
 ```
 
    In Figure 2, The original dataset was filtered down to get the summary data by
